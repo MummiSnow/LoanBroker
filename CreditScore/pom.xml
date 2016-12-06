@@ -10,6 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>creditScore</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>aa.cphbusiness</groupId>
+            <artifactId>loanBroker</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
 
 
 </project>

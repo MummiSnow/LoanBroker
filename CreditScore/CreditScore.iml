@@ -11,6 +11,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="LoanBroker" />
     <orderEntry type="library" name="Maven: com.rabbitmq:amqp-client:3.1.4" level="project" />
   </component>
 </module>
