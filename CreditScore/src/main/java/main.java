@@ -1,43 +1,55 @@
+import RabbitInterface.PublishConsume;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.QueueingConsumer;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 
-/**
- * Created by MJPS on 28/11/2016.
- */
-public class main {
-	
-	private static String QUEUE_NAME;
-	private static String EXCHANGE_NAME = "test";
-	
-	public static void main(String[] args) throws IOException, InterruptedException {
-		
-		ConnectionFactory factory = new ConnectionFactory();
-		factory.setHost("188.166.29.160");
-		factory.setUsername("admin");
-		factory.setPassword("admin");
-		Connection connection = factory.newConnection();
-		Channel channel = connection.createChannel();
-		
-		channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
-		QUEUE_NAME = channel.queueDeclare().getQueue();
-		channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "");
-		System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
-		
-		QueueingConsumer consumer = new QueueingConsumer(channel);
-		channel.basicConsume(QUEUE_NAME, true, consumer);
-		
-		while (true) {
-			QueueingConsumer.Delivery delivery = consumer.nextDelivery();
-			String msg = new String(delivery.getBody());
-			
-			System.out.println(" [x] Received '" + msg + "'");
-		}
-		
-		
-		
-	}
+public class main implements PublishConsume {
+
+    private static String QUEUE_NAME = "test";
+    private static String EXCHANGE_NAME = "aaInternal";
+
+    public static void main(String[] args) throws IOException, InterruptedException {
+        new main();
+    }
+
+    public main() {
+        String message = "Hello";
+        publisher(EXCHANGE_NAME, QUEUE_NAME, message);
+    }
+
+
+    public void publisher(String exchangeName, String queueName, String msg) {
+        ConnectionFactory factory = new ConnectionFactory();
+        try {
+            factory.setUri("amqp://admin:admin@188.166.29.160");
+            Connection connection = factory.newConnection();
+            Channel channel = connection.createChannel();
+
+            channel.exchangeDeclare(EXCHANGE_NAME, "direct", true);
+            channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "");
+
+
+            channel.basicPublish("", //ExchangeName - Already defined
+                    queueName, //Routing key - can be defined in another way if needed
+                    null, //Basic properties
+                    msg.getBytes()); //Message bytes
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (KeyManagementException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String receiver(String exchangeName, String queueName) {
+        return "";
+    }
 }
