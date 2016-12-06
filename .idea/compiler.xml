@@ -22,11 +22,22 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="LoanBroker" />
+        <module name="Aggregator" />
+        <module name="CreditScore" />
+        <module name="GetBank" />
+        <module name="Normalizer" />
+        <module name="RecipientList" />
+        <module name="Translators" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Aggregator" target="1.5" />
+      <module name="CreditScore" target="1.5" />
+      <module name="GetBank" target="1.5" />
       <module name="LoanBroker" target="1.5" />
+      <module name="Normalizer" target="1.5" />
+      <module name="RecipientList" target="1.5" />
+      <module name="Translators" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

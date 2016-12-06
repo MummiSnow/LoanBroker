@@ -6,7 +6,16 @@
 
     <groupId>aa.cphbusiness</groupId>
     <artifactId>loanBroker</artifactId>
+    <packaging>pom</packaging>
     <version>1.0</version>
+    <modules>
+        <module>CreditScore</module>
+        <module>GetBank</module>
+        <module>RecipientList</module>
+        <module>Translators</module>
+        <module>Normalizer</module>
+        <module>Aggregator</module>
+    </modules>
 
     <dependencies>
         <dependency>
