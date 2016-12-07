@@ -12,8 +12,14 @@ import java.security.NoSuchAlgorithmException;
 
 public abstract class PublishConsume
 {
+    public static final String EXCHANGE_NAME = "aaInternal";
+    public static final String XML_EXCHANGE_NAME = "cphbusiness.bankXML";
+    public static final String JSON_EXCHANGE_NAME = "cphbusiness.bankJSON";
+    public static final String MSG_EXCHANGE_NAME = "";
+
     public static void publisher(String exchangeName, String queueName, String msg)
     {
+
         ConnectionFactory factory = new ConnectionFactory();
         try {
             factory.setHost("188.166.29.160");
