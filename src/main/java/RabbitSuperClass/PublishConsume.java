@@ -13,9 +13,9 @@ import java.security.NoSuchAlgorithmException;
 public abstract class PublishConsume
 {
     public static final String EXCHANGE_NAME = "aaInternal";
-    public static final String XML_EXCHANGE_NAME = "cphbusiness.bankXML";
-    public static final String JSON_EXCHANGE_NAME = "cphbusiness.bankJSON";
-    public static final String MSG_EXCHANGE_NAME = "";
+    public static final String XML_EXCHANGE_NAME = "cphbusiness.bankXML"; //Response queue = aaExtFromXmlBank
+    public static final String JSON_EXCHANGE_NAME = "cphbusiness.bankJSON"; //Response queue = aaExtFromJSONBank
+    public static final String MSG_EXCHANGE_NAME = "aa.RabbitMQBank"; //Response queue = aaExtFromMsgBank
 
     public static void publisher(String exchangeName, String queueName, String msg)
     {
