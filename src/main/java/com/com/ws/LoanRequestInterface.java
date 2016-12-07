@@ -15,22 +15,28 @@ import javax.xml.ws.Action;
  * Generated source version: 2.2
  * 
  */
-@WebService(name = "CreditScoreRequestInterface", targetNamespace = "http://ws.com/")
+@WebService(name = "LoanRequestInterface", targetNamespace = "http://ws.com/")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
-public interface CreditScoreRequestInterface {
+public interface LoanRequestInterface {
 
 
     /**
      * 
+     * @param arg2
+     * @param arg1
      * @param arg0
      * @return
      *     returns java.lang.String
      */
-    @WebMethod(operationName = "CreditScoreRequest")
+    @WebMethod(operationName = "LoanRequest")
     @WebResult(partName = "return")
-    @Action(input = "http://ws.com/CreditScoreRequestInterface/CreditScoreRequestRequest", output = "http://ws.com/CreditScoreRequestInterface/CreditScoreRequestResponse")
-    public String creditScoreRequest(
+    @Action(input = "http://ws.com/LoanRequestInterface/LoanRequestRequest", output = "http://ws.com/LoanRequestInterface/LoanRequestResponse")
+    public String loanRequest(
         @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        int arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        int arg2);
 
 }

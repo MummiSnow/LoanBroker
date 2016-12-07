@@ -9,8 +9,8 @@ import javax.jws.soap.SOAPBinding.Style;
 //Web Service Endpoint Interface
 @WebService
 @SOAPBinding(style = Style.RPC)
-public interface CreditScoreRequestInterface {
+public interface LoanRequestInterface {
 	
 	@WebMethod
-	String CreditScoreRequest(String name);
+	String LoanRequest(String SSN, int loanAmount, int loanDurationInMonths );
 }
