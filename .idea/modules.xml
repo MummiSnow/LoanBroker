@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/CreditScore/CreditScore.iml" filepath="$PROJECT_DIR$/CreditScore/CreditScore.iml" />
       <module fileurl="file://$PROJECT_DIR$/GetBank/GetBank.iml" filepath="$PROJECT_DIR$/GetBank/GetBank.iml" />
       <module fileurl="file://$PROJECT_DIR$/LoanBroker.iml" filepath="$PROJECT_DIR$/LoanBroker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MessagingBank/MessagingBank.iml" filepath="$PROJECT_DIR$/MessagingBank/MessagingBank.iml" />
       <module fileurl="file://$PROJECT_DIR$/Normalizer/Normalizer.iml" filepath="$PROJECT_DIR$/Normalizer/Normalizer.iml" />
       <module fileurl="file://$PROJECT_DIR$/RecipientList/RecipientList.iml" filepath="$PROJECT_DIR$/RecipientList/RecipientList.iml" />
       <module fileurl="file://$PROJECT_DIR$/Translators/Translators.iml" filepath="$PROJECT_DIR$/Translators/Translators.iml" />
