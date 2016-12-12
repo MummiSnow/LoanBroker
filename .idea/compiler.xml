@@ -9,9 +9,9 @@
         <module name="Aggregator" />
         <module name="CreditScore" />
         <module name="GetBank" />
-        <module name="GetBanksWS" />
         <module name="Normalizer" />
         <module name="RecipientList" />
+        <module name="RuleBaseWS" />
         <module name="Translators" />
       </profile>
     </annotationProcessing>
@@ -23,6 +23,7 @@
       <module name="LoanBroker" target="1.8" />
       <module name="Normalizer" target="1.8" />
       <module name="RecipientList" target="1.8" />
+      <module name="RuleBaseWS" target="1.5" />
       <module name="Translators" target="1.8" />
     </bytecodeTargetLevel>
   </component>

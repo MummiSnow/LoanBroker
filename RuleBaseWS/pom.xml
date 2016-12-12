@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>aa.cphbusiness</groupId>
-    <artifactId>GetBanksWS</artifactId>
+    <artifactId>RuleBaseWS</artifactId>
     <version>1.0</version>
 
     
