@@ -23,7 +23,8 @@
       <module name="LoanBroker" target="1.8" />
       <module name="Normalizer" target="1.8" />
       <module name="RecipientList" target="1.8" />
-      <module name="RuleBaseWS" target="1.5" />
+      <module name="RuleBaseWS" target="1.8" />
+      <module name="RuleBaseWS1" target="1.5" />
       <module name="Translators" target="1.8" />
     </bytecodeTargetLevel>
   </component>
