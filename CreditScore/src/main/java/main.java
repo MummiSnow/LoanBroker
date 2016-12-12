@@ -78,7 +78,7 @@ public class main extends PublishConsume {
             try {
                 System.out.println("\t--> Recieved message from LoanRequest Validating and Enriching Data...");
                 Thread.sleep(1000);
-                System.out.printf("\t---> Id: %1s, SSN: %2s, LoanAmount:%3d, LoanDuration:%4d Months(%5s) \n",customer.getId(), customer.getSSN(),
+                System.out.printf("\t---> Id: %1s, SSN: %2s, LoanAmount:%3d, LoanDuration: %4dMonths(%5s) \n",customer.getId(), customer.getSSN(),
 						customer.getLoanAmount(),
 						customer.getLoanDuration(),
 						customer.getLoanDurationLocalDate().toString());

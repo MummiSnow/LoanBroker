@@ -114,7 +114,7 @@ public class Customer {
 				" \"SSN\": \"%2s\"," +
 				" \"LoanAmount\": %3$d," +
 				" \"LoanDuration\": %4$d," +
-				" \"LoanDurationAsDate\": %5s, " +
+				" \"LoanDurationAsDate\": %5s," +
 				" \"CreditScore\": %6$d}", Id,SSN,loanAmount, loanDuration, loanDurationLocalDate.toString(),creditScore);
 		
 		return loanDetails;
