@@ -31,13 +31,13 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Aggregator" target="1.5" />
-      <module name="CreditScore" target="1.5" />
-      <module name="GetBank" target="1.5" />
-      <module name="LoanBroker" target="1.5" />
-      <module name="Normalizer" target="1.5" />
-      <module name="RecipientList" target="1.5" />
-      <module name="Translators" target="1.5" />
+      <module name="Aggregator" target="1.8" />
+      <module name="CreditScore" target="1.8" />
+      <module name="GetBank" target="1.8" />
+      <module name="LoanBroker" target="1.8" />
+      <module name="Normalizer" target="1.8" />
+      <module name="RecipientList" target="1.8" />
+      <module name="Translators" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -36,7 +36,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CreditScore }
-     * 
+     *
      */
     public CreditScore createCreditScore() {
         return new CreditScore();
@@ -44,7 +44,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CreditScoreResponse }
-     * 
+     *
      */
     public CreditScoreResponse createCreditScoreResponse() {
         return new CreditScoreResponse();
@@ -52,7 +52,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CreditScore }{@code >}}
-     * 
+     *
      */
     @XmlElementDecl(namespace = "http://service.web.credit.bank.org/", name = "creditScore")
     public JAXBElement<CreditScore> createCreditScore(CreditScore value) {
@@ -61,7 +61,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CreditScoreResponse }{@code >}}
-     * 
+     *
      */
     @XmlElementDecl(namespace = "http://service.web.credit.bank.org/", name = "creditScoreResponse")
     public JAXBElement<CreditScoreResponse> createCreditScoreResponse(CreditScoreResponse value) {
