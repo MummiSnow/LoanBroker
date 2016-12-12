@@ -1,14 +1,11 @@
 package com.ws;
 
-import RabbitSuperClass.PublishConsume;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 import javax.jws.WebService;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 //Web Service Endpoint Implementation
 @WebService(endpointInterface = "com.ws.LoanRequestInterface")
@@ -49,13 +46,4 @@ public class LoanRequestImplementation implements LoanRequestInterface {
 		return "Something went wrong in 'LoanRequestImplementation' Class";
 	}
 	
-	@Override
-	public ArrayList<String> ListTest() {
-		ArrayList<String> ar = new ArrayList<>();
-		
-		ar.add("1");
-		ar.add("2");
-		
-		return ar;
-	}
 }
