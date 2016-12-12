@@ -1,12 +1,8 @@
 import RabbitSuperClass.PublishConsume;
 import com.rabbitmq.client.*;
-import com.ws.GetBanksImplementation;
-import com.ws.GetBanksInterface;
+import com.ws.RuleBaseImplementation;
 
-import javax.xml.namespace.QName;
-import javax.xml.ws.Service;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Arrays;
 
 
@@ -73,9 +69,9 @@ public class main extends PublishConsume {
                 System.out.println("\t--> Recieved message from CreditScore..");
                 Thread.sleep(1000);
                 System.out.println();
-                com.ws.GetBanksImplementation lS = new GetBanksImplementation();
+                RuleBaseImplementation ruleBaseService = new RuleBaseImplementation();
                 Thread.sleep(2000);
-                boolean[] ser = lS.GetBanks(customer.getSSN(),customer.getLoanAmount(), customer.getLoanDuration(), customer.getCreditScore());
+                boolean[] ser = ruleBaseService.GetBanks(customer.getSSN(),customer.getLoanAmount(), customer.getLoanDuration(), customer.getCreditScore());
                 Thread.sleep(2000);
                 System.out.println(Arrays.toString(ser));
                 customer.setBanks(ser);

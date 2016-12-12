@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/MessagingBank/MessagingBank.iml" filepath="$PROJECT_DIR$/MessagingBank/MessagingBank.iml" />
       <module fileurl="file://$PROJECT_DIR$/Normalizer/Normalizer.iml" filepath="$PROJECT_DIR$/Normalizer/Normalizer.iml" />
       <module fileurl="file://$PROJECT_DIR$/RecipientList/RecipientList.iml" filepath="$PROJECT_DIR$/RecipientList/RecipientList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RuleBaseWS/RuleBaseWS.iml" filepath="$PROJECT_DIR$/RuleBaseWS/RuleBaseWS.iml" />
       <module fileurl="file://$PROJECT_DIR$/Translators/Translators.iml" filepath="$PROJECT_DIR$/Translators/Translators.iml" />
     </modules>
   </component>

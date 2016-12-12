@@ -6,7 +6,7 @@ import javax.jws.soap.SOAPBinding;
 
 @WebService
 @SOAPBinding(style = SOAPBinding.Style.RPC)
-public interface GetBanksInterface{
+public interface RuleBaseInterface {
         @WebMethod
         boolean[] GetBanks(String SSN, int loanAmount, int loanDurationInMonths, int creditScore );
 }

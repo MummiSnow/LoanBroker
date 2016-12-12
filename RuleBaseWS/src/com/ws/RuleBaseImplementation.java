@@ -3,8 +3,8 @@ package com.ws;
 import javax.jws.WebService;
 import java.util.Random;
 
-@WebService(endpointInterface = "com.ws.GetBanksInterface")
-public class GetBanksImplementation implements GetBanksInterface {
+@WebService(endpointInterface = "com.ws.RuleBaseInterface")
+public class RuleBaseImplementation implements RuleBaseInterface {
     @Override
     public boolean[] GetBanks(String SSN, int loanAmount, int loanDurationInMonths, int creditScore) {
 
