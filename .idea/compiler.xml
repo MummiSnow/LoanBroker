@@ -9,6 +9,7 @@
         <module name="Aggregator" />
         <module name="CreditScore" />
         <module name="GetBank" />
+        <module name="GetBanksWS" />
         <module name="Normalizer" />
         <module name="RecipientList" />
         <module name="Translators" />
@@ -18,6 +19,7 @@
       <module name="Aggregator" target="1.8" />
       <module name="CreditScore" target="1.8" />
       <module name="GetBank" target="1.8" />
+      <module name="GetBanksWS" target="1.5" />
       <module name="LoanBroker" target="1.8" />
       <module name="Normalizer" target="1.8" />
       <module name="RecipientList" target="1.8" />

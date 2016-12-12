@@ -11,7 +11,6 @@ public class main extends PublishConsume
     }
     public main()
     {
-        String msg = receiver(EXCHANGE_NAME,RECEIVE_QUEUE);
-        publisher(EXCHANGE_NAME,SEND_QUEUE,msg);
+
     }
 }

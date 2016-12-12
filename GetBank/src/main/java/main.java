@@ -1,7 +1,7 @@
 import RabbitSuperClass.PublishConsume;
 import com.rabbitmq.client.*;
 import com.ws.GetBanksImplementation;
-import com.ws.GetBanksInterface;
+
 
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
