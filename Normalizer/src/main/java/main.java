@@ -1,6 +1,6 @@
+import RabbitSuperClass.PublishConsume;
 
-
-public class main
+public class main extends PublishConsume
 {
     private static String SEND_QUEUE = "GetBanks";
     private static String RECEIVE_QUEUE = "Normalizer";
