@@ -1,33 +1,32 @@
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
-import java.util.UUID;
 
-/**
- * Created by MJPS on 07/12/2016.
- */
 public class Customer {
-	
 	private String Id;
 	private String SSN;
 	private int loanDuration;
 	private int loanAmount;
+	private long epoch;
 	private int creditScore;
+	private boolean[] banks;
 	
 	public Customer(String jsonObject) {
 		parseJSONToObject(jsonObject);
 	}
 	
-	public void setId() {
-		this.Id = UUID.randomUUID().toString();
+	//region private setters
+	private void setId(String id) {
+		this.Id = id;
 	}
 	
-	private String setSSN(String SSN) {
+	private void setSSN(String SSN) {
 		if (SSN.matches("[0-9]{6}-([0-9]{4})")){
 			this.SSN = SSN;
-			return this.SSN;
 		} else {
 			throw new IllegalArgumentException("SSN is not valid");
 		}
@@ -48,6 +47,7 @@ public class Customer {
 			throw new IllegalArgumentException("Cannot Issue a Loan of 0 or less");
 		}
 	}
+	//endregion
 	
 	public String getId() {
 		return Id;
@@ -77,16 +77,29 @@ public class Customer {
 		}
 	}
 	
+	public void setEpoch(long epoch) {
+		this.epoch = epoch;
+	}
+	
+	public long getEpoch() {
+		return epoch;
+	}
+	
 	private void parseJSONToObject(String json) {
 		if (json != null || json == "") {
 			JSONObject obj = new JSONObject(json);
+			String id = obj.getString("Id");
 			String ssn = obj.getString("SSN");
 			int lA = obj.getInt("LoanAmount");
 			int lD = obj.getInt("LoanDuration");
-			setId();
+			int lC = obj.getInt("CreditScore");
+			long epoch = obj.getLong("Epoch");
+			setId(id);
 			setSSN(ssn);
 			setLoanAmount(lA);
 			setLoanDuration(lD);
+			setCreditScore(lC);
+			setEpoch(epoch);
 		} else {
 			throw new NullPointerException("JSON object is null or invalid");
 		}
@@ -99,7 +112,8 @@ public class Customer {
 				" \"SSN\": \"%2s\"," +
 				" \"LoanAmount\": %3$d," +
 				" \"LoanDuration\": %4$d," +
-				" \"CreditScore\": %5$d}", Id,SSN,loanAmount, loanDuration,creditScore);
+				" \"CreditScore\": %6$d, " +
+				" \"Epoch\": %5$d} ", Id,SSN,loanAmount, loanDuration, epoch, creditScore);
 		
 		return loanDetails;
 	}

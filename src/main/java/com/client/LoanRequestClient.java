@@ -12,8 +12,9 @@ public class LoanRequestClient {
 		//LoanRequestImplementationService loanService = new LoanRequestImplementationService();
 		//LoanRequestInterface service = loanService.getLoanRequestImplementationPort();
 		com.ws.LoanRequestImplementation lS = new LoanRequestImplementation();
-		String ser = lS.LoanRequest("020219-9600",12, 30);
-		
+		for (int i = 0; i < 10; i++) {
+			String ser = lS.LoanRequest("020219-9600", 12, 30);
+		}
 		/*ArrayList<String> list = lS.ListTest();
 		
 		
