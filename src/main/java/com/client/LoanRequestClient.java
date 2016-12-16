@@ -15,8 +15,8 @@ public class LoanRequestClient {
 		for (int i = 0; i < 10; i++) {
 			String ser = lS.LoanRequest("020219-9600", 12, 30);
 		}
-		/*ArrayList<String> list = lS.ListTest();
 		
+		/*ArrayList<String> list = lS.ListTest();
 		
 		System.out.println(list.size());
 		
@@ -25,6 +25,5 @@ public class LoanRequestClient {
 			
 		
 	}
-	
 	
 }
