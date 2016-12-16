@@ -9,10 +9,12 @@
         <module name="Aggregator" />
         <module name="CreditScore" />
         <module name="GetBank" />
+        <module name="JSONTranslator" />
         <module name="Normalizer" />
         <module name="RecipientList" />
         <module name="RuleBaseWS" />
         <module name="Translators" />
+        <module name="XMLTranslator" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -20,12 +22,14 @@
       <module name="CreditScore" target="1.8" />
       <module name="GetBank" target="1.8" />
       <module name="GetBanksWS" target="1.5" />
+      <module name="JSONTranslator" target="1.8" />
       <module name="LoanBroker" target="1.8" />
       <module name="Normalizer" target="1.8" />
       <module name="RecipientList" target="1.8" />
       <module name="RuleBaseWS" target="1.8" />
       <module name="RuleBaseWS1" target="1.5" />
       <module name="Translators" target="1.8" />
+      <module name="XMLTranslator" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

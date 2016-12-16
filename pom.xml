@@ -15,6 +15,8 @@
         <module>Translators</module>
         <module>Normalizer</module>
         <module>Aggregator</module>
+        <module>XMLTranslator</module>
+        <module>JSONTranslator</module>
     </modules>
     <build>
         <plugins>

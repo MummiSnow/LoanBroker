@@ -3,7 +3,9 @@
 import RabbitSuperClass.PublishConsume;
 import com.rabbitmq.client.*;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 
 public class Playground extends PublishConsume {
@@ -44,12 +46,13 @@ public class Playground extends PublishConsume {
 			};
 			boolean autoAck = false;
 			channel.basicConsume(TASK_QUEUE_NAME, autoAck, consumer);
-			
-			
-			
+
 		}
-		
-		private static String printMessage(String queMsg) {
+
+
+
+
+    private static String printMessage(String queMsg) {
 			
 			System.out.println("KOM NU!!! "+msg);
 			msg = queMsg;

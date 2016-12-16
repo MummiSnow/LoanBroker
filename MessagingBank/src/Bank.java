@@ -15,8 +15,17 @@ public class Bank
 
     /*
     Method for reading input from Queue
+    Params should be SSN, Amount, Duration, Creditscore
+        Duration is not discussed format yet, most likely will be integer months
     Then getting interest rate using method below
     Then answering to the defined reply to channel
+
+    Reply channel should be aaExtFromMsgBank
+    Request Exhchange is aa.RabbitMQBank
+    Exchange is fanout
+    No request queue is made at this point
+
+    Reply should be SSN, InterestRate
      */
 
 
