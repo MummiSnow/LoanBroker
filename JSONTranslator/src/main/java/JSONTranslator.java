@@ -7,7 +7,7 @@ import com.rabbitmq.client.*;
 public class JSONTranslator {
 
     private static String QUEUE_NAME = "JSONTranslator";
-    private static String BINDING_KEY = "aaExtFromJSONBank";
+    private static String BINDING_KEY = "JSONTranslator";
     private static String EXCHANGE_NAME = "aaInternal";
 
     private static ConnectionFactory factory;
@@ -84,7 +84,7 @@ public class JSONTranslator {
     private static void publishMessage(Customer customer) {
         try {
             byte[] message = customer.toString().getBytes();
-            message = "{\"ssn\": 0511922222, \"creditScore\": 400, \"loanAmount\": 500.0, \"loanDuration\": 10}".getBytes();
+            message = "{\"ssn\": 0511922222, \"creditScore\": 400, \"loanAmount\": 500.0 \"loanDuration\": 10}".getBytes();
             factory = new ConnectionFactory();
             factory.setHost("datdb.cphbusiness.dk");
             factory.setUsername("aa");
@@ -97,7 +97,7 @@ public class JSONTranslator {
             channel.exchangeDeclare("cphbusiness.bankJSON", "fanout");
 
             channel.basicPublish("cphbusiness.bankJSON",
-                    BINDING_KEY,
+                    "",
                     new AMQP.BasicProperties.Builder().replyTo("aaExtFromJSONBank").build(),
                     message);
 

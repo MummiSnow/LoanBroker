@@ -17,6 +17,7 @@
         <module>Aggregator</module>
         <module>XMLTranslator</module>
         <module>JSONTranslator</module>
+        <module>MessagingTranslator</module>
     </modules>
     <build>
         <plugins>

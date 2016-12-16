@@ -12,7 +12,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="RuleBaseWS" />
-    <orderEntry type="library" name="Maven: aa.cphbusiness:RuleBaseWS:1.0" level="project" />
     <orderEntry type="module" module-name="LoanBroker" />
     <orderEntry type="library" name="Maven: aa.cphbusiness:RuleBaseWS:1.0" level="project" />
     <orderEntry type="library" name="Maven: com.rabbitmq:amqp-client:3.1.4" level="project" />

@@ -6,11 +6,13 @@ import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
 
 import javax.xml.bind.*;
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class XmlTranslator
 {
     private static String QUEUE_NAME = "XMLTranslator";
-    private static String BINDING_KEY = "";
+    private static String BINDING_KEY = "XMLTranslator";
     private static String EXCHANGE_NAME = "aaInternal";
 
     private static ConnectionFactory factory;
@@ -93,9 +95,14 @@ public class XmlTranslator
 
             ByteOutputStream bos = new ByteOutputStream();
             marshallerObj.marshal(customer, bos);
-            byte[] message;//= bos.getBytes();
-            message = String.format("<LoanRequest>   <ssn>$1%</ssn>   <creditScore>$2%</creditScore>   <loanAmount>$3%</loanAmount>   <loanDuration>$4%</loanDuration> </LoanRequest>",customer.getSSN(), customer.getCreditScore(),customer.getLoanAmount(), customer.getLoanDuration()).getBytes();
+            SimpleDateFormat ddf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.s zzz");
 
+            byte[] message = String.format("<LoanRequest>   " +
+                    "<ssn>%1$s</ssn>   " +
+                    "<creditScore>%2$d</creditScore>   " +
+                    "<loanAmount>%3$d</loanAmount>   " +
+                    "<loanDuration>%4$s</loanDuration> " +
+                    "</LoanRequest>",customer.getSSN(), customer.getCreditScore(),customer.getLoanAmount(), ddf.format(customer.getLoanDuration())).getBytes();
             factory = new ConnectionFactory();
             factory.setHost("datdb.cphbusiness.dk");
             factory.setUsername("aa");

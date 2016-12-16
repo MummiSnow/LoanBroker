@@ -1,16 +1,117 @@
+import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+
+import Model.LoanRequest;
+import com.rabbitmq.client.*;
+import org.json.JSONObject;
 
 public class Bank
 {
-    public static void main(String[] args) {
-        new Bank();
+    private static String QUEUE_NAME = "aa.RabbitMQ";
+    private static String BINDING_KEY = "aa.RabbitMQ";
+    private static String EXCHANGE_NAME = "aa.RabbitMQBank";
+
+    private static ConnectionFactory factory;
+    private static Connection connection;
+    private static Channel channel;
+    private static LoanRequest lr;
+
+    public static void main(String[] args) throws IOException, InterruptedException {
+        consumeMessage(EXCHANGE_NAME, QUEUE_NAME, BINDING_KEY);
+
+
     }
 
-    Random r;
+    public static void consumeMessage(String exchangeName, String queueName, String bindingKey)
+    {
+        factory = new ConnectionFactory();
+        try {
+            factory.setHost("datdb.cphbusiness.dk");
+            factory.setUsername("aa");
+            factory.setPassword("aa");
+            connection= factory.newConnection();
+            channel = connection.createChannel();
 
-    public Bank() {
-        r= new Random();
+            channel.queueDeclare(queueName, true, false, false, null);
+            System.out.println(" [*] Messaging bank waiting for messages...");
+            channel.queueBind(queueName, exchangeName, bindingKey);
+
+            Consumer consumer = new DefaultConsumer(channel) {
+
+                @Override
+                public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
+                    String message = new String(body, "UTF-8");
+
+                    try {
+                        Thread.sleep(1000);
+                        System.out.println(properties.getReplyTo());
+                        getDataFromMessage(message, properties.getReplyTo());
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } finally {
+
+                    }
+
+                }
+            };
+            channel.basicConsume(queueName, true, consumer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void getDataFromMessage(String message, String replyTo){
+        if (message != null || message != "") {
+            parseJSONToObject(message);
+            try {
+
+                System.out.println("Received message...");
+                Thread.sleep(1000);
+                System.out.println();
+
+                System.out.println(lr);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (lr != null){
+            publishMessage(lr, replyTo);
+        } else {
+            throw new NullPointerException("Customer cannot be null");
+        }
+
+
+    }
+
+    private static void publishMessage(LoanRequest loanRequest, String replyTo) {
+        try {
+            byte[] message = loanRequest.toString().getBytes();
+            factory = new ConnectionFactory();
+            factory.setHost("datdb.cphbusiness.dk");
+            factory.setUsername("aa");
+            factory.setPassword("aa");
+
+            connection = factory.newConnection();
+            channel = connection.createChannel();
+
+            System.out.println(replyTo);
+            channel.exchangeDeclare(EXCHANGE_NAME, "direct", true);
+            channel.basicPublish(EXCHANGE_NAME,
+                    replyTo,
+                    null,
+                    message);
+
+            System.out.printf("Sent: '%1s' ", message);
+
+            channel.close();
+            connection.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /*
@@ -27,14 +128,20 @@ public class Bank
 
     Reply should be SSN, InterestRate
      */
-
-
-    private double getInterestRate()
-    {
-        DecimalFormat df = new DecimalFormat("#.00");
-        double d = r.nextDouble()*(r.nextInt(6)+5);
-        return Double.parseDouble(df.format(d));
+    private static void parseJSONToObject(String json) {
+        if (json != null || json == "") {
+            JSONObject obj = new JSONObject(json);
+            String ssn = obj.getString("ssn");
+            int lA = obj.getInt("loanAmount");
+            int lD = obj.getInt("loanDuration");
+            int lC = obj.getInt("creditScore");
+            lr = new LoanRequest(ssn, lA, lD, lC);
+        } else {
+            throw new NullPointerException("JSON object is null or invalid");
+        }
     }
+
+
 
 
 }
