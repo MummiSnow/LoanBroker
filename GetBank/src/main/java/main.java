@@ -49,6 +49,11 @@ public class main {
                     try {
                         getDataFromMessage(message);
                     }  finally {
+                        if (message == "") {
+                            channel.close();
+                            connection.close();
+                            throw new NullPointerException("\t\t Data invalid could not enrich data");
+                        }
                         
                     }
                     
@@ -64,17 +69,21 @@ public class main {
         if (message != null || message != "") {
             customer = new Customer(message);
             try {
-
-
-                System.out.println("\t--> Recieved message from CreditScore..");
+                System.out.println("\t--> Received message from CreditScore..");
+                System.out.println("\t---> Validating Data...");
                 Thread.sleep(1000);
-                System.out.println();
                 RuleBaseImplementation ruleBaseService = new RuleBaseImplementation();
                 Thread.sleep(2000);
+                System.out.println("\t----> Requesting Rule base service...");
                 boolean[] ser = ruleBaseService.GetBanks(customer.getSSN(),customer.getLoanAmount(), customer.getLoanDuration(), customer.getCreditScore());
                 Thread.sleep(2000);
-                System.out.println(Arrays.toString(ser));
-                customer.setBanks(ser);
+                if (ser != null) {
+                    System.out.printf("\t-----> Response: 200 Ok \t(");
+                    customer.setBanks(ser);
+                    System.out.printf("(True = accepted) BankXML: %1s, BankJSON: %2s, BankWS: %3s, BankMSG: %4s )\n",ser[0],ser[1],ser[2],ser[3]);
+                } else {
+                    System.out.println("\t------> Response: 406 Not acceptable");
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -82,7 +91,7 @@ public class main {
         }
 
         if (customer != null){
-            publishMessage(customer);
+            publishMessageToRecipientList(customer);
         } else {
             throw new NullPointerException("Customer cannot be null");
         }
@@ -90,7 +99,7 @@ public class main {
 
     }
 
-    private static void publishMessage(Customer customer) {
+    private static void publishMessageToRecipientList(Customer customer) {
         try {
             byte[] message = customer.toString().getBytes();
             factory = new ConnectionFactory();
@@ -104,9 +113,10 @@ public class main {
             channel.exchangeDeclare(EXCHANGE_NAME, "direct", true);
 
             channel.basicPublish(EXCHANGE_NAME, "RecipientList", null, message);
-
-            System.out.printf("Sent: '%1s' ", message);
-
+    
+            String msgStr = new String(message, "UTF-8");
+            System.out.println("\t------> Sent: '"+ msgStr+"'");
+            System.out.println("========================================================================================");
             channel.close();
             connection.close();
         } catch (IOException e) {

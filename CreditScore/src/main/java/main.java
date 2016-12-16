@@ -22,14 +22,10 @@ public class main extends PublishConsume {
     private static CreditScoreService score;
     
     public static void main(String[] args) throws IOException, InterruptedException {
-    
-    
+        
         cs = new CreditScoreService_Service();
         score = cs.getCreditScoreServicePort();
-    
         consumeMessage(EXCHANGE_NAME,QUEUE_NAME, BINDING_KEY);
-        
-        
         
         
     }
@@ -46,6 +42,8 @@ public class main extends PublishConsume {
             
             channel.queueDeclare(queueName, true, false, false, null);
             System.out.println(" [*] CreditScore Waiting for messages from LoanRequest...");
+            System.out.println("========================================================================================");
+    
             channel.queueBind(queueName, exchangeName, bindingKey);
             
             Consumer consumer = new DefaultConsumer(channel) {
@@ -72,35 +70,33 @@ public class main extends PublishConsume {
         }
     }
     
-    private static void getDataFromMessage(String message){
+    public static void getDataFromMessage(String message){
         if (message != null || message != "") {
             customer = new Customer(message);
             try {
                 System.out.println("\t--> Recieved message from LoanRequest Validating and Enriching Data...");
+                System.out.println("\t---> Validating and Enriching Data...");
                 Thread.sleep(1000);
-                System.out.printf("\t---> Id: %1s, SSN: %2s, LoanAmount:%3d, LoanDuration: %4dMonths(%5s) \n",customer.getId(), customer.getSSN(),
+                System.out.printf("\t----> Id:%1s, SSN:%2s, LoanAmount:%3d, LoanDuration:%4d Months \n",customer.getId(), customer.getSSN(),
 						customer.getLoanAmount(),
-						customer.getLoanDuration(),
-						customer.getLoanDurationLocalDate().toString());
-                System.out.println("\t----> Requesting Credit Score Bureau service... ");
+						customer.getLoanDuration());
+                System.out.println("\t-----> Requesting Credit Score Bureau service... ");
                 Thread.sleep(2000);
                 customer.setCreditScore(score.creditScore(customer.getSSN()));
-                System.out.println("\t-----> Customer Credit Score: "+customer.getCreditScore());
+                System.out.println("\t------> Customer Credit Score: "+customer.getCreditScore());
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         
         if (customer != null){
-            publishMessage(customer);
+            publishMessageToGetBanks(customer);
         } else {
             throw new NullPointerException("Customer cannot be null");
         }
-        
-        
     }
     
-    private static void publishMessage(Customer customer) {
+    public static void publishMessageToGetBanks(Customer customer) {
         try {
             byte[] message = customer.toString().getBytes();
             factory = new ConnectionFactory();
@@ -113,10 +109,11 @@ public class main extends PublishConsume {
         
             channel.exchangeDeclare(EXCHANGE_NAME, "direct", true);
         
-            channel.basicPublish(EXCHANGE_NAME, "GetBanks", null, message);
+            channel.basicPublish(EXCHANGE_NAME, SEND_QUEUE, null, message);
         
-            System.out.printf("Sent: '%1s' ", message);
-        
+            String msgStr = new String(message, "UTF-8");
+            System.out.printf("\t-------> Sent: '%1s'\n", msgStr);
+            System.out.println("========================================================================================");
             channel.close();
             connection.close();
         } catch (IOException e) {

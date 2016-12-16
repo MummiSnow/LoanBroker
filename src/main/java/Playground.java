@@ -6,6 +6,10 @@ import com.rabbitmq.client.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 
 
 public class Playground extends PublishConsume {
@@ -16,7 +20,7 @@ public class Playground extends PublishConsume {
 	
 		// Not relevant, Only for test use!
 		public static void main(String[] argv) throws Exception {
-			ConnectionFactory factory = new ConnectionFactory();
+			/*ConnectionFactory factory = new ConnectionFactory();
 			factory.setHost("188.166.29.160");
 			factory.setUsername("admin");
 			factory.setPassword("admin");
@@ -45,7 +49,33 @@ public class Playground extends PublishConsume {
 				}
 			};
 			boolean autoAck = false;
-			channel.basicConsume(TASK_QUEUE_NAME, autoAck, consumer);
+			channel.basicConsume(TASK_QUEUE_NAME, autoAck, consumer);*/
+
+			LocalDate today = LocalDate.now();
+			LocalDate loanDurationLocalDate = today.plus(23, ChronoUnit.MONTHS);
+			Date toDate = java.sql.Date.valueOf(loanDurationLocalDate);
+			Date fromDate = java.sql.Date.valueOf(today);
+			//get date as epoch
+			String strDate = toDate.toString();
+			String strFromDate = fromDate.toString();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = dateFormat.parse(strDate);
+			Date d = dateFormat.parse(strFromDate);
+			long epoch = date.getTime();
+			long todayLong = d.getTime();
+
+			long loanDuration = epoch-todayLong;
+
+
+			Date da = new Date(loanDuration);
+
+			SimpleDateFormat dF = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+			//dF.applyPattern("yyyy-MM-dd hh:mm:ss.s z");
+			SimpleDateFormat ddf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.s zzz");
+			System.out.println(ddf.format(da));
+			System.out.println(da);
+			//dF.parse(da.toString());
+
 
 		}
 
