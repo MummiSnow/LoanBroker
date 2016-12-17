@@ -6,17 +6,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Aggregator" />
-        <module name="CreditScore" />
-        <module name="GetBank" />
-        <module name="JSONTranslator" />
-        <module name="MessagingTranslator" />
-        <module name="Normalizer" />
-        <module name="RecipientList" />
-        <module name="RuleBaseWS" />
-        <module name="Translators" />
-        <module name="WSTranslator" />
-        <module name="XMLTranslator" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
