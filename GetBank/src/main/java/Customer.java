@@ -139,7 +139,7 @@ public class Customer {
 				" \"BankXML\": %7$s, " +
 				" \"BankJSON\": %8$s, " +
 				" \"BankWS\": %9$s, " +
-				" \"BankMSG\": %10$s}, ", Id,SSN,loanAmount, loanDuration, epoch,creditScore, banks[0], banks[1], banks[2], banks[3]);
+				" \"BankMSG\": %10$s}", Id,SSN,loanAmount, loanDuration, epoch,creditScore, banks[0], banks[1], banks[2], banks[3]);
 		
 		return loanDetails;
 	}

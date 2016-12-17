@@ -1,5 +1,7 @@
 package com;
 
+import org.json.JSONObject;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -12,11 +14,14 @@ public class Customer {
 	private int loanAmount;
 	private long epoch;
 	private int creditScore;
-	private LoanDetails loanDetails;
-
-
-
-    @XmlElement
+	private LoanResponse loanResponse;
+	
+	
+	public Customer (String JSON) {
+		parseJSONToObject(JSON);
+	}
+	
+	@XmlElement
 	public void setId(String id) {
 		Id = id;
 	}
@@ -47,8 +52,8 @@ public class Customer {
 	}
 	
 	@XmlElement
-	public void setLoanDetails(LoanDetails loanDetails) {
-		this.loanDetails = loanDetails;
+	public void setLoanResponse(LoanResponse loanResponse) {
+		this.loanResponse = loanResponse;
 	}
 	
 	public String getSSN() {
@@ -59,12 +64,8 @@ public class Customer {
 		return Id;
 	}
 	
-	public long getEpoch() {
-		return epoch;
-	}
-	
-	public LoanDetails getLoanDetails() {
-		return loanDetails;
+	public LoanResponse getLoanResponse() {
+		return loanResponse;
 	}
 	
 	public int getLoanDuration() {
@@ -80,4 +81,35 @@ public class Customer {
 	}
 	
 	
+	private void parseJSONToObject(String json) {
+		if (json != null || json == "") {
+			JSONObject obj = new JSONObject(json);
+			String id = obj.getString("Id");
+			String ssn = obj.getString("SSN");
+			int lA = obj.getInt("LoanAmount");
+			int lD = obj.getInt("LoanDuration");
+			int lC = obj.getInt("CreditScore");
+			long epoch = obj.getLong("Epoch");
+			setId(id);
+			setSSN(ssn);
+			setLoanAmount(lA);
+			setLoanDuration(lD);
+			setCreditScore(lC);
+			setEpoch(epoch);
+		} else {
+			throw new NullPointerException("JSON object is null or invalid");
+		}
+	}
+	
+	@Override
+	public String toString() {
+		String loanDetails = String.format("{\"Id\": %1s," +
+				" \"SSN\": \"%2s\"," +
+				" \"LoanAmount\": %3$d," +
+				" \"LoanDuration\": %4$d," +
+				" \"CreditScore\": %5$d, " +
+				" \"Epoch\": %6$d} ", Id,SSN,loanAmount, loanDuration, creditScore, epoch);
+		
+		return loanDetails;
+	}
 }

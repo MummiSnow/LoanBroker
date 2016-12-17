@@ -69,8 +69,8 @@ public class LoanRequest {
 
     @Override
     public String toString() {
-        String requestDetails = String.format("{\"ssn\": %1s," +
-                " \"InterestRate\": %2$f}", getSsn(), getInterestRate());
+        String requestDetails = String.format("{\"SSN\": %1s," +
+                " \"interestRate\": %2$f}", getSsn(), getInterestRate());
         return requestDetails;
     }
 }
