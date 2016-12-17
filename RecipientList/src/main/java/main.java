@@ -92,7 +92,7 @@ public class main {
 		}
 		Thread.sleep(500);
 		if (json == true) {
-			System.out.println("\t     -> Accepted by JSON Bank: "+xml);
+			System.out.println("\t     -> Accepted by JSON Bank: "+json);
 			
 			String sendTo = SEND_QUEUE[1].toString();
 			
@@ -100,7 +100,7 @@ public class main {
 		}
 		Thread.sleep(500);
 		if (ws == true) {
-			System.out.println("\t     -> Accepted by WebService Bank: "+xml);
+			System.out.println("\t     -> Accepted by WebService Bank: "+ws);
 			
 			String sendTo = SEND_QUEUE[2].toString();
 			
@@ -108,14 +108,13 @@ public class main {
 		}
 		Thread.sleep(500);
 		if (msg == true) {
-			System.out.println("\t     -> Accepted by Messaging Bank: "+xml);
+			System.out.println("\t     -> Accepted by Messaging Bank: "+msg);
 			
 			String sendTo = SEND_QUEUE[3].toString();
 			
 			publishMessage(sendTo,customer);
 		}
-		System.out.println("\t 		---> Sent to Aggregator for later comparison");
-		publishMessage(AGGREGATOR_QUEUE, customer);
+		publishMessageToAggregator(AGGREGATOR_QUEUE, customer);
 		System.out.println("========================================================================================");
 	}
 	
@@ -142,5 +141,30 @@ public class main {
 			e.printStackTrace();
 		}
 	}
+	
+	private static void publishMessageToAggregator(String queueName, Customer object) {
+		try {
+			factory = new ConnectionFactory();
+			factory.setHost("188.166.29.160");
+			factory.setUsername("admin");
+			factory.setPassword("admin");
+			
+			connection = factory.newConnection();
+			channel = connection.createChannel();
+			
+			channel.exchangeDeclare(EXCHANGE_NAME, "direct", true);
+			
+			channel.basicPublish(EXCHANGE_NAME, queueName, null, object.toString().getBytes());
+			
+			System.out.println("\t 		---> Sent to Aggregator for later comparison");
+			
+			channel.close();
+			connection.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	
 }

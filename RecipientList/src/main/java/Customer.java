@@ -109,8 +109,8 @@ public class Customer {
 	public String toString() {
 		
 		String loanDetails = String.format("{\"Id\": %1s," +
-				" \"SSN\": \"%2s\"," +
-				" \"LoanAmount\": %3$d," +
+				" \"SSN\":\"%2s\"," +
+				"\"LoanAmount\": %3$d," +
 				" \"LoanDuration\": %4$d," +
 				" \"CreditScore\": %6$d, " +
 				" \"Epoch\": %5$d} ", Id,SSN,loanAmount, loanDuration, epoch, creditScore);
