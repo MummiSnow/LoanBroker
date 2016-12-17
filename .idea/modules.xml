@@ -13,8 +13,8 @@
       <module fileurl="file://$PROJECT_DIR$/RecipientList/RecipientList.iml" filepath="$PROJECT_DIR$/RecipientList/RecipientList.iml" />
       <module fileurl="file://$PROJECT_DIR$/RuleBaseWS/RuleBaseWS.iml" filepath="$PROJECT_DIR$/RuleBaseWS/RuleBaseWS.iml" />
       <module fileurl="file://$PROJECT_DIR$/Translators/Translators.iml" filepath="$PROJECT_DIR$/Translators/Translators.iml" />
-      <module fileurl="file://$PROJECT_DIR$/XMLTranslator/XMLTranslator.iml" filepath="$PROJECT_DIR$/XMLTranslator/XMLTranslator.iml" />
       <module fileurl="file://$PROJECT_DIR$/WSBank/WSBank.iml" filepath="$PROJECT_DIR$/WSBank/WSBank.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WSTranslator/WSTranslator.iml" filepath="$PROJECT_DIR$/WSTranslator/WSTranslator.iml" />
       <module fileurl="file://$PROJECT_DIR$/WSTranslator/WSTranslator.iml" filepath="$PROJECT_DIR$/WSTranslator/WSTranslator.iml" />
       <module fileurl="file://$PROJECT_DIR$/XMLTranslator/XMLTranslator.iml" filepath="$PROJECT_DIR$/XMLTranslator/XMLTranslator.iml" />
     </modules>
