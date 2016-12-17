@@ -13,8 +13,10 @@ public class Customer {
 	private long epoch;
 	private int creditScore;
 	private LoanDetails loanDetails;
-	
-	@XmlElement
+
+
+
+    @XmlElement
 	public void setId(String id) {
 		Id = id;
 	}

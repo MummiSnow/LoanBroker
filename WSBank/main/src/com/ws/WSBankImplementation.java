@@ -2,17 +2,12 @@ package com.ws;
 
 import com.Customer;
 import com.LoanDetails;
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
 
 import javax.jws.WebService;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 import java.util.Random;
 
 //Web Service Endpoint Implementation

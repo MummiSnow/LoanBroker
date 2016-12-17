@@ -15,6 +15,7 @@
         <module name="RecipientList" />
         <module name="RuleBaseWS" />
         <module name="Translators" />
+        <module name="WSTranslator" />
         <module name="XMLTranslator" />
       </profile>
     </annotationProcessing>
@@ -31,6 +32,7 @@
       <module name="RuleBaseWS" target="1.8" />
       <module name="RuleBaseWS1" target="1.5" />
       <module name="Translators" target="1.8" />
+      <module name="WSTranslator" target="1.8" />
       <module name="XMLTranslator" target="1.8" />
     </bytecodeTargetLevel>
   </component>
