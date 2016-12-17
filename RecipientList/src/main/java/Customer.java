@@ -1,11 +1,5 @@
 import org.json.JSONObject;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
-
 public class Customer {
 	private String Id;
 	private String SSN;
@@ -108,7 +102,7 @@ public class Customer {
 	@Override
 	public String toString() {
 		
-		String loanDetails = String.format("{\"Id\": %1s," +
+		String loanDetails = String.format("{\"Id\": \"%1s\"," +
 				" \"SSN\": \"%2s\"," +
 				" \"LoanAmount\": %3$d," +
 				" \"LoanDuration\": %4$d," +

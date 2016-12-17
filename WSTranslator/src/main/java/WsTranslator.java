@@ -79,7 +79,7 @@ public class WsTranslator {
     {
         System.out.println("JSON that will be sent to WS: "+customer);
         WSBankImplementation lS = new WSBankImplementation();
-        String loanResponse = lS.RequestLoanDetails(customer.toString());
+        String loanResponse = lS.RequestLoanDetails(customer);
     }
 
 }

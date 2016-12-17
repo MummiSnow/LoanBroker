@@ -16,6 +16,7 @@
       <module fileurl="file://$PROJECT_DIR$/WSBank/WSBank.iml" filepath="$PROJECT_DIR$/WSBank/WSBank.iml" />
       <module fileurl="file://$PROJECT_DIR$/WSTranslator/WSTranslator.iml" filepath="$PROJECT_DIR$/WSTranslator/WSTranslator.iml" />
       <module fileurl="file://$PROJECT_DIR$/XMLTranslator/XMLTranslator.iml" filepath="$PROJECT_DIR$/XMLTranslator/XMLTranslator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WSBank/main/main.iml" filepath="$PROJECT_DIR$/WSBank/main/main.iml" />
     </modules>
   </component>
 </project>
