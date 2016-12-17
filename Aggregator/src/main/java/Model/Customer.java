@@ -41,7 +41,7 @@ public class Customer {
     }
 
     private String setSSN(String SSN) {
-        if (SSN.matches("[0-9]{10}") || SSN.matches("[0-9]{8}")){
+        if (SSN.matches("[0-9]{10}") || SSN.matches("[0-9]{8}") || SSN.matches("[0-9]{6}-[0-9]{4}")){
             this.SSN = SSN;
             return this.SSN;
         } else {

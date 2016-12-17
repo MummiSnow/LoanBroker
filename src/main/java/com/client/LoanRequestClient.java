@@ -3,8 +3,6 @@ package com.client;
 
 import com.ws.LoanRequestImplementation;
 
-import java.util.ArrayList;
-
 public class LoanRequestClient {
 	
 	public static void main(String[] args) {
@@ -12,8 +10,8 @@ public class LoanRequestClient {
 		//LoanRequestImplementationService loanService = new LoanRequestImplementationService();
 		//LoanRequestInterface service = loanService.getLoanRequestImplementationPort();
 		com.ws.LoanRequestImplementation lS = new LoanRequestImplementation();
-		for (int i = 0; i < 10; i++) {
-			String ser = lS.LoanRequest("020219-9600", 12, 30);
+		for (int i = 0; i < 1; i++) {
+			String ser = lS.LoanRequest("311299-9999", 12, 30);
 		}
 		
 		/*ArrayList<String> list = lS.ListTest();
