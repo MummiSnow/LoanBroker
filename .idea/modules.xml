@@ -6,19 +6,17 @@
       <module fileurl="file://$PROJECT_DIR$/CreditScore/CreditScore.iml" filepath="$PROJECT_DIR$/CreditScore/CreditScore.iml" />
       <module fileurl="file://$PROJECT_DIR$/GetBank/GetBank.iml" filepath="$PROJECT_DIR$/GetBank/GetBank.iml" />
       <module fileurl="file://$PROJECT_DIR$/JSONTranslator/JSONTranslator.iml" filepath="$PROJECT_DIR$/JSONTranslator/JSONTranslator.iml" />
-      <module fileurl="file://$PROJECT_DIR$/JSONTranslator/JSONTranslator.iml" filepath="$PROJECT_DIR$/JSONTranslator/JSONTranslator.iml" />
       <module fileurl="file://$PROJECT_DIR$/LoanBroker.iml" filepath="$PROJECT_DIR$/LoanBroker.iml" />
       <module fileurl="file://$PROJECT_DIR$/MessagingBank/MessagingBank.iml" filepath="$PROJECT_DIR$/MessagingBank/MessagingBank.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MessagingTranslator/MessagingTranslator.iml" filepath="$PROJECT_DIR$/MessagingTranslator/MessagingTranslator.iml" />
       <module fileurl="file://$PROJECT_DIR$/MessagingTranslator/MessagingTranslator.iml" filepath="$PROJECT_DIR$/MessagingTranslator/MessagingTranslator.iml" />
       <module fileurl="file://$PROJECT_DIR$/Normalizer/Normalizer.iml" filepath="$PROJECT_DIR$/Normalizer/Normalizer.iml" />
       <module fileurl="file://$PROJECT_DIR$/RecipientList/RecipientList.iml" filepath="$PROJECT_DIR$/RecipientList/RecipientList.iml" />
       <module fileurl="file://$PROJECT_DIR$/RuleBaseWS/RuleBaseWS.iml" filepath="$PROJECT_DIR$/RuleBaseWS/RuleBaseWS.iml" />
       <module fileurl="file://$PROJECT_DIR$/Translators/Translators.iml" filepath="$PROJECT_DIR$/Translators/Translators.iml" />
+      <module fileurl="file://$PROJECT_DIR$/XMLTranslator/XMLTranslator.iml" filepath="$PROJECT_DIR$/XMLTranslator/XMLTranslator.iml" />
       <module fileurl="file://$PROJECT_DIR$/WSBank/WSBank.iml" filepath="$PROJECT_DIR$/WSBank/WSBank.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WSTranslator/WSTranslator.iml" filepath="$PROJECT_DIR$/WSTranslator/WSTranslator.iml" />
       <module fileurl="file://$PROJECT_DIR$/XMLTranslator/XMLTranslator.iml" filepath="$PROJECT_DIR$/XMLTranslator/XMLTranslator.iml" />
-      <module fileurl="file://$PROJECT_DIR$/XMLTranslator/XMLTranslator.iml" filepath="$PROJECT_DIR$/XMLTranslator/XMLTranslator.iml" />
-      <module fileurl="file://$PROJECT_DIR$/WSTranslator/src/main/main.iml" filepath="$PROJECT_DIR$/WSTranslator/src/main/main.iml" />
     </modules>
   </component>
 </project>

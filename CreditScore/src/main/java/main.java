@@ -1,9 +1,9 @@
 import RabbitSuperClass.PublishConsume;
+import com.rabbitmq.client.*;
+import org.bank.credit.web.service.CreditScoreService;
+import org.bank.credit.web.service.CreditScoreService_Service;
 
 import java.io.IOException;
-
-import com.rabbitmq.client.*;
-import org.bank.credit.web.service.*;
 
 
 public class main extends PublishConsume {
@@ -12,7 +12,7 @@ public class main extends PublishConsume {
     private static String QUEUE_NAME = "CreditScore";
     private static String BINDING_KEY = "CreditScore";
     private static String EXCHANGE_NAME = "aaInternal";
-    
+
     private static ConnectionFactory factory;
     private static Connection connection;
     private static Channel channel;

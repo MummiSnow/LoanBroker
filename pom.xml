@@ -18,6 +18,7 @@
         <module>XMLTranslator</module>
         <module>JSONTranslator</module>
         <module>MessagingTranslator</module>
+        <module>WSTranslator</module>
     </modules>
     <build>
         <plugins>

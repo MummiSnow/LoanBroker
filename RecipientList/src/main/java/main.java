@@ -3,11 +3,10 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-/**
- * Created by MJPS on 28/11/2016.
- */
+
 public class main {
-	
+
+	private static String AGGREGATOR_QUEUE = "AggregatorFromRecipient";
 	private static String[] SEND_QUEUE = {"XMLTranslator", "JSONTranslator", "WSTranslator", "MessagingTranslator" };
 	private static String QUEUE_NAME = "RecipientList";
 	private static String BINDING_KEY = "RecipientList";
@@ -115,6 +114,8 @@ public class main {
 			
 			publishMessage(sendTo,customer);
 		}
+		System.out.println("\t 		---> Sent to Aggregator for later comparison");
+		publishMessage(AGGREGATOR_QUEUE, customer);
 		System.out.println("========================================================================================");
 	}
 	
@@ -131,6 +132,7 @@ public class main {
 			channel.exchangeDeclare(EXCHANGE_NAME, "direct", true);
 			
 			channel.basicPublish(EXCHANGE_NAME, queueName, null, object.toString().getBytes());
+
 			
 			System.out.println("\t      --> Sent: '"+ object+"'");
 			
