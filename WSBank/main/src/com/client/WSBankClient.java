@@ -2,6 +2,7 @@ package com.client;
 
 
 import com.Customer;
+import com.LoanResponse;
 import com.rabbitmq.client.*;
 import com.ws.WSBankImplementation;
 
@@ -26,17 +27,6 @@ public class WSBankClient {
 		WSBankImplementation lS = new WSBankImplementation();
 		
 		
-		Customer customer = new Customer();
-		
-		customer.setId("123");
-		customer.setSSN("1234567891");
-		customer.setLoanAmount(202020);
-		customer.setEpoch(12);
-		customer.setLoanDuration(12);
-		customer.setCreditScore(234);
-		
-		lS.RequestLoanDetails(customer);
-		
 		try {
 			
 			File file = new File("logs/Customer.xml");
@@ -46,8 +36,8 @@ public class WSBankClient {
 			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 			Customer cust = (Customer) unmarshaller.unmarshal(file);
 			
-			System.out.println("Customer has an interest Rate of " + cust.getLoanDetails().getInterestRate() );
-			publishMessage(EXCHANGE_NAME, QUEUE_NAME, cust );
+			System.out.println("Customer has an interest Rate of " + cust.getLoanResponse().getInterestRate() );
+			//publishMessage(EXCHANGE_NAME, QUEUE_NAME, cust );
 			
 		} catch (JAXBException e) {
 			e.printStackTrace();

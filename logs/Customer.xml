@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <customer>
-    <creditScore>234</creditScore>
-    <epoch>12</epoch>
-    <id>123</id>
-    <loanAmount>202020</loanAmount>
-    <loanDetails>
-        <interestRate>5.81270414825608</interestRate>
-        <SSN>1234567891</SSN>
-    </loanDetails>
-    <loanDuration>12</loanDuration>
-    <SSN>1234567891</SSN>
+    <creditScore>503</creditScore>
+    <epoch>0</epoch>
+    <loanAmount>12</loanAmount>
+    <loanDuration>30</loanDuration>
+    <loanResponse>
+        <interestRate>5.011994423144178</interestRate>
+        <SSN>020219-9600</SSN>
+    </loanResponse>
+    <SSN>020219-9600</SSN>
 </customer>

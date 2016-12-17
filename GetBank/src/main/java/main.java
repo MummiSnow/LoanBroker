@@ -9,8 +9,8 @@ import java.util.Arrays;
 public class main {
 
 
-    private static String QUEUE_NAME = "MessagingTranslator";
-    private static String BINDING_KEY = "MessagingTranslator";
+    private static String QUEUE_NAME = "GetBanks";
+    private static String BINDING_KEY = "GetBanks";
     private static String EXCHANGE_NAME = "aaInternal";
     
     private static ConnectionFactory factory;

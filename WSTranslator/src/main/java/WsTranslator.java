@@ -17,9 +17,8 @@ public class WsTranslator {
 
 
     public static void main(String[] args) throws IOException, InterruptedException {
+        
         consumeMessage(EXCHANGE_NAME, QUEUE_NAME, BINDING_KEY);
-
-
     }
 
     public static void consumeMessage(String exchangeName, String queueName, String bindingKey)
@@ -63,7 +62,6 @@ public class WsTranslator {
                 System.out.println("Received message from Recipient List...");
                 Thread.sleep(1000);
                 System.out.println();
-
                 System.out.println(customer);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -71,22 +69,17 @@ public class WsTranslator {
         }
 
         if (customer != null){
-            callWebService(customer);
+            callWebService(customer.toString());
         } else {
             throw new NullPointerException("Customer cannot be null");
         }
     }
 
-    private static void callWebService(Customer customer)
+    private static void callWebService(String customer)
     {
+        System.out.println("JSON that will be sent to WS: "+customer);
         WSBankImplementation lS = new WSBankImplementation();
-        com.Customer cust = new com.Customer();
-        cust.setCreditScore(customer.getCreditScore());
-        cust.setLoanAmount((int) customer.getLoanAmount());
-        cust.setSSN(customer.getSSN());
-        cust.setLoanDuration(customer.getLoanDuration());
-        lS.RequestLoanDetails(cust);
+        String loanResponse = lS.RequestLoanDetails(customer.toString());
     }
-
 
 }

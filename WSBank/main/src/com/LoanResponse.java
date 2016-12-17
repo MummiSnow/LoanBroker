@@ -4,10 +4,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class LoanDetails {
+public class LoanResponse {
 	
 	private double interestRate;
-	private String ssn;
+	private String SSN;
 	
 	@XmlElement
 	public void setInterestRate(double interestRate) {
@@ -15,7 +15,7 @@ public class LoanDetails {
 	}
 	@XmlElement
 	public void setSSN(String ssn) {
-		this.ssn = ssn;
+		this.SSN = ssn;
 	}
 	
 	public double getInterestRate() {
@@ -23,6 +23,13 @@ public class LoanDetails {
 	}
 	
 	public String getSSN() {
-		return ssn;
+		return SSN;
+	}
+	
+	public String toString() {
+		String loanDetails = String.format("{\"SSN\": \"%1s\"," +
+				" \"interestRate\": %2$f}", SSN,interestRate);
+		
+		return loanDetails;
 	}
 }

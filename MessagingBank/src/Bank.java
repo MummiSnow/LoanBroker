@@ -25,7 +25,7 @@ public class Bank
 
     }
 
-    public static void consumeMessage(String exchangeName, String queueName, String bindingKey)
+    private static void consumeMessage(String exchangeName, String queueName, String bindingKey)
     {
         factory = new ConnectionFactory();
         try {
@@ -51,10 +51,8 @@ public class Bank
                         getDataFromMessage(message, properties.getReplyTo());
                     } catch (InterruptedException e) {
                         e.printStackTrace();
-                    } finally {
-
                     }
-
+    
                 }
             };
             channel.basicConsume(queueName, true, consumer);
@@ -64,20 +62,17 @@ public class Bank
     }
 
     private static void getDataFromMessage(String message, String replyTo){
-        if (message != null || message != "") {
-            parseJSONToObject(message);
-            try {
+        parseJSONToObject(message);
+        try {
+			System.out.println("Received message...");
+			Thread.sleep(1000);
+			System.out.println();
 
-                System.out.println("Received message...");
-                Thread.sleep(1000);
-                System.out.println();
-
-                System.out.println(lr);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
+			System.out.println(lr);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    
         if (lr != null){
             publishMessage(lr, replyTo);
         } else {
@@ -129,7 +124,7 @@ public class Bank
     Reply should be SSN, InterestRate
      */
     private static void parseJSONToObject(String json) {
-        if (json != null || json == "") {
+        if (json != null) {
             JSONObject obj = new JSONObject(json);
             String ssn = obj.getString("ssn");
             int lA = obj.getInt("loanAmount");

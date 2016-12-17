@@ -17,7 +17,7 @@ public interface WSBankInterface {
 	
 	@WebMethod()
 	@WebResult(name = "XMLLoanResponse")
-	Customer RequestLoanDetails(Customer customer);
+	String RequestLoanDetails(String JSONCustomer);
 	
 	
 	

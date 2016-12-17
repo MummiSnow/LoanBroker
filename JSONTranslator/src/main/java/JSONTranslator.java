@@ -19,8 +19,6 @@ public class JSONTranslator {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         consumeMessage(EXCHANGE_NAME, QUEUE_NAME, BINDING_KEY);
-
-
     }
 
     public static void consumeMessage(String exchangeName, String queueName, String bindingKey)
