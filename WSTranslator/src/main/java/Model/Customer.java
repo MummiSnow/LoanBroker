@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 
 public class Customer {
-    
+
     private String id;
     private String SSN;
     private int loanDuration;
@@ -18,29 +18,29 @@ public class Customer {
     }
 
     //region private setters
-    
-    
+
+
     public void setId(String id) {
         this.id = id;
     }
-    
+
     private String setSSN(String SSN) {
-        if (SSN.matches("[0-9]{6}-([0-9]{4})")){
+        if (SSN.matches("[0-9]{6}-([0-9]{4})")) {
             this.SSN = SSN;
         } else {
             throw new IllegalArgumentException("SSN is not valid");
         }
         return null;
     }
-    
+
     private void setLoanAmount(int loanAmount) {
         if (loanAmount > 0) {
             this.loanAmount = loanAmount;
-        } else{
+        } else {
             throw new IllegalArgumentException("Cannot Issue a Loan of 0 or less");
         }
     }
-    
+
     private int setLoanDuration(int loanDuration) {
         if (loanDuration > 0) {
             this.loanDuration = loanDuration;
@@ -49,38 +49,42 @@ public class Customer {
             throw new IllegalArgumentException("Cannot Issue a Loan with a loan period of " + loanDuration);
         }
     }
-    
+
     public void setCreditScore(int creditScore) {
         this.creditScore = creditScore;
     }
-    
-    public void setEpoch(long epoch) {this.epoch = epoch; }
-    
+
+    public void setEpoch(long epoch) {
+        this.epoch = epoch;
+    }
+
     //endregion
 
-    public String getId() {return id;}
-    
+    public String getId() {
+        return id;
+    }
+
     public String getSSN() {
         return SSN;
     }
-    
+
     public double getLoanAmount() {
         return loanAmount;
     }
-    
+
     public int getLoanDuration() {
         return loanDuration;
     }
-    
+
     public int getCreditScore() {
         return creditScore;
     }
-    
+
     public long getEpoch() {
         return epoch;
     }
-    
-    
+
+
     private void parseJSONToObject(String json) {
         if (json != null || json == "") {
             JSONObject obj = new JSONObject(json);
@@ -102,19 +106,24 @@ public class Customer {
     }
 
 
-
     @Override
     public String toString() {
-        String loanDetails = String.format("{\"Id\":\"%1s\","+
-                "\"SSN\": \"%2s\"," +
-                " \"LoanAmount\": %3$d," +
-                " \"LoanDuration\": %4$d," +
-                " \"CreditScore\": %5$d,"+
-                " \"Epoch\": %6$d}", id, SSN, loanAmount, loanDuration, creditScore, epoch);
+        String loanDetails = "<LoanRequest> <Id>10b4930c-f72f-47ca-ad11-6fe2f9951bc6</Id>" +
+                "<SSN>111111-9600</SSN>" +
+                " <LoanAmount>100</LoanAmount>" +
+                "<LoanDuration>100</LoanDuration>" +
+                "<CreditScore>240</CreditScore>" +
+                "<Epoch>1744840800000</Epoch>" +
+                "</LoanRequest>";
+
+        /*String loanDetails = String.format("{\"SSN\": \"%1s\"," +
+                " \"LoanAmount\": %2$d," +
+                " \"LoanDuration\": %3$d," +
+                " \"CreditScore\": %4$d,"+
+                " \"Epoch\": %5$d}", SSN, loanAmount, loanDuration, creditScore, epoch);*/
 
         return loanDetails;
     }
-
 
 
 }

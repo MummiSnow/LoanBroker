@@ -1,12 +1,6 @@
 package Model;
 import org.json.JSONObject;
 
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.UUID;
-
 
 public class Customer {
     private String SSN;
@@ -100,7 +94,7 @@ public class Customer {
     public String toString() {
 
 
-        String loanDetails = String.format("{\"ssn\": %1s," +
+        String loanDetails = String.format("{\"ssn\": \"%1s\"," +
                 " \"creditScore\": %4$d," +
                 " \"loanAmount\": %2$d," +
                 " \"loanDuration\": %3$d}", SSN, loanAmount, loanDuration, creditScore);

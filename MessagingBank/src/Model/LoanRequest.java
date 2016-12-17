@@ -1,6 +1,5 @@
 package Model;
 
-import java.text.DecimalFormat;
 import java.util.Random;
 
 public class LoanRequest {
@@ -18,7 +17,7 @@ public class LoanRequest {
         this.loanAmount = loanAmount;
         this.loanDuration = loanDuration;
         this.creditScore = creditScore;
-    }
+}
 
     public String getSsn() {
         return ssn;
@@ -26,9 +25,8 @@ public class LoanRequest {
 
     private double getInterestRate()
     {
-        DecimalFormat df = new DecimalFormat("#.00");
         double d = r.nextDouble()*(r.nextInt(6)+5);
-        return Double.parseDouble(df.format(d));
+        return d;
     }
 
     public void setSsn(String ssn) {
@@ -69,8 +67,8 @@ public class LoanRequest {
 
     @Override
     public String toString() {
-        String requestDetails = String.format("{\"SSN\": %1s," +
-                " \"interestRate\": %2$f}", getSsn(), getInterestRate());
+        String requestDetails = String.format("{\"SSN\": \"%1s\"," +
+                " \"interestRate\": %2$f}", getSsn(), rate);
         return requestDetails;
     }
 }

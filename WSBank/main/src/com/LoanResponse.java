@@ -27,9 +27,14 @@ public class LoanResponse {
 	}
 	
 	public String toString() {
+
+		String loanDet = String.format("<LoanResponse>" +
+				"<SSN>%1$s</SSN>" +
+				"<interestRate>%2$f</interestRate>" +
+				"</LoanResponse>",SSN, interestRate);
 		String loanDetails = String.format("{\"SSN\": \"%1s\"," +
 				" \"interestRate\": %2$f}", SSN,interestRate);
 		
-		return loanDetails;
+		return loanDet;
 	}
 }

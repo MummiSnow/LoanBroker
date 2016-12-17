@@ -68,7 +68,7 @@ public class LoanResponse {
 	@Override
 	public String toString() {
 		String loanResponse = String.format("{\"SSN\": %1$d," +
-				" \"interestRate\": \"%2$f\"}", SSN, interestRate );
+				" \"interestRate\": \"%2$s\"}", SSN, interestRate );
 		return loanResponse;
 	}
 }
