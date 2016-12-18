@@ -69,7 +69,6 @@ public class XmlTranslator
 
                 System.out.println();
                 System.out.println("Received message from Recipient List...");
-                Thread.sleep(1000);
                 System.out.println();
 
             } catch (Exception e) {

@@ -60,7 +60,6 @@ public class WsTranslator {
             customer = new Customer(message);
             try {
                 System.out.println("Received message from Recipient List...");
-                Thread.sleep(1000);
                 System.out.println();
                 System.out.println(customer);
             } catch (Exception e) {
