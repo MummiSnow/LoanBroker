@@ -77,7 +77,7 @@ public class WsTranslator {
 
     private static void callWebService(String customer)
     {
-        System.out.println("JSON that will be sent to WS: "+customer);
+        System.out.println("XML that will be sent to WS: "+customer);
         WSBankImplementation lS = new WSBankImplementation();
         String loanResponse = lS.RequestLoanDetails(customer);
     }

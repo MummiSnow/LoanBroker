@@ -17,6 +17,7 @@ public class LoanRequest {
         this.loanAmount = loanAmount;
         this.loanDuration = loanDuration;
         this.creditScore = creditScore;
+        this.rate = getInterestRate();
 }
 
     public String getSsn() {

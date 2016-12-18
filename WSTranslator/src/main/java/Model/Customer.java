@@ -14,7 +14,7 @@ public class Customer {
 
 
     public Customer(String jsonObject) {
-        parseJSONToObject(jsonObject);
+        parseXMLToObject(jsonObject);
     }
 
     //region private setters
@@ -26,7 +26,9 @@ public class Customer {
 
     private String setSSN(String SSN) {
         if (SSN.matches("[0-9]{6}-([0-9]{4})")) {
-            this.SSN = SSN;
+            char[] c = SSN.toCharArray();
+            char[] ssnc = new char[]{c[0],c[1],c[2],c[3],c[4],c[5],c[7],c[8],c[9],c[10]};
+            this.SSN = new String(ssnc);
         } else {
             throw new IllegalArgumentException("SSN is not valid");
         }
@@ -85,7 +87,7 @@ public class Customer {
     }
 
 
-    private void parseJSONToObject(String json) {
+    private void parseXMLToObject(String json) {
         if (json != null || json == "") {
             JSONObject obj = new JSONObject(json);
             String id = obj.getString("Id");
@@ -108,19 +110,13 @@ public class Customer {
 
     @Override
     public String toString() {
-        String loanDetails = "<LoanRequest> <Id>10b4930c-f72f-47ca-ad11-6fe2f9951bc6</Id>" +
-                "<SSN>111111-9600</SSN>" +
-                " <LoanAmount>100</LoanAmount>" +
-                "<LoanDuration>100</LoanDuration>" +
-                "<CreditScore>240</CreditScore>" +
-                "<Epoch>1744840800000</Epoch>" +
-                "</LoanRequest>";
-
-        /*String loanDetails = String.format("{\"SSN\": \"%1s\"," +
-                " \"LoanAmount\": %2$d," +
-                " \"LoanDuration\": %3$d," +
-                " \"CreditScore\": %4$d,"+
-                " \"Epoch\": %5$d}", SSN, loanAmount, loanDuration, creditScore, epoch);*/
+        String loanDetails = String.format("<LoanRequest> <Id>%1s</Id>" +
+                "<SSN>%2s</SSN>" +
+                "<LoanAmount>%3$d</LoanAmount>" +
+                "<LoanDuration>%4$d</LoanDuration>" +
+                "<CreditScore>%5$d</CreditScore>" +
+                "<Epoch>%6$d</Epoch>" +
+                "</LoanRequest>",id,SSN, loanAmount, loanDuration,creditScore,epoch);
 
         return loanDetails;
     }

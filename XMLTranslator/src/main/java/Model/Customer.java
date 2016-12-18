@@ -14,7 +14,7 @@ import java.util.Date;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Customer
 {
-    @XmlElement(name= "ssn", required = true, nillable = false)
+    @XmlElement(name= "SSN", required = true, nillable = false)
     private String SSN;
     @XmlElement(required = true, type = Integer.class, nillable = false)
     private int creditScore;

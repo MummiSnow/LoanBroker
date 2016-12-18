@@ -7,14 +7,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class LoanResponse {
 	
 	private double interestRate;
-	private String SSN;
+	private int SSN;
 	
 	@XmlElement
 	public void setInterestRate(double interestRate) {
 		this.interestRate = interestRate;
 	}
-	@XmlElement
-	public void setSSN(String ssn) {
+	@XmlElement(name = "SSN")
+	public void setSSN(int ssn) {
 		this.SSN = ssn;
 	}
 	
@@ -22,18 +22,16 @@ public class LoanResponse {
 		return interestRate;
 	}
 	
-	public String getSSN() {
+	public int getSSN() {
 		return SSN;
 	}
 	
 	public String toString() {
 
 		String loanDet = String.format("<LoanResponse>" +
-				"<SSN>%1$s</SSN>" +
+				"<ssn>%1$d</ssn>" +
 				"<interestRate>%2$f</interestRate>" +
 				"</LoanResponse>",SSN, interestRate);
-		String loanDetails = String.format("{\"SSN\": \"%1s\"," +
-				" \"interestRate\": %2$f}", SSN,interestRate);
 		
 		return loanDet;
 	}

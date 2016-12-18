@@ -30,11 +30,11 @@ public class WSBankImplementation implements WSBankInterface {
 					//calculations
 					if (newCust.getLoanAmount() < 3000 || newCust.getCreditScore() <= 600) {
 						double iR = randomInRange(3.99, 6.99);
-						lR.setSSN(newCust.getSSN());
+						lR.setSSN(Integer.parseInt(newCust.getSSN()));
 						lR.setInterestRate(iR);
 					} else if (newCust.getLoanAmount() >= 3000 || newCust.getCreditScore() > 600 ) {
 						double iR = randomInRange(0.00, 3000);
-						lR.setSSN(newCust.getSSN());
+						lR.setSSN(Integer.parseInt(newCust.getSSN()));
 						lR.setInterestRate(iR);
 					}
 					//Add LoanDetails To Customer

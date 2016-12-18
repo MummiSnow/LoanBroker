@@ -28,7 +28,7 @@ public class Customer {
         Id = id;
     }
 
-    @XmlElement
+    @XmlElement(name = "SSN")
     public void setSSN(String ssn) {
         SSN = ssn;
     }
