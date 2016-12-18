@@ -16,7 +16,8 @@ public class Customer {
     private int resposesReceived = 0;
     private long timeStampOfArrival;
 
-    public Customer(){Date arrival = new Date();
+    public Customer(){
+        Date arrival = new Date();
         this.timeStampOfArrival = arrival.getTime();
         interestRate = -1.0;}
 

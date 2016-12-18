@@ -1,9 +1,5 @@
-
-
 import RabbitSuperClass.PublishConsume;
-
-import java.text.DecimalFormat;
-import java.util.Random;
+import com.ws.WSBankImplementation;
 
 
 public class Playground extends PublishConsume {
@@ -44,11 +40,8 @@ public class Playground extends PublishConsume {
 			};
 			boolean autoAck = false;
 			channel.basicConsume(TASK_QUEUE_NAME, autoAck, consumer);*/
-			Random r = new Random();
-			DecimalFormat df = new DecimalFormat("#,00");
-			double d = r.nextDouble()*(r.nextInt(6)+5);
-			System.out.println(d);
-			System.out.println(Double.parseDouble(df.format(d)));
+			WSBankImplementation lS = new WSBankImplementation();
+			String loanResponse = lS.RequestLoanDetails("<LoanRequest> <Id>7b67ae9e-1961-4746-932d-e439bfbd21e0</Id><SSN>1111119602</SSN><LoanAmount>100</LoanAmount><LoanDuration>100</LoanDuration><CreditScore>43</CreditScore><Epoch>1744927200000</Epoch></LoanRequest>");
 
 		}
 

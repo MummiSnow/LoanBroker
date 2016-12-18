@@ -219,6 +219,7 @@ public class main extends PublishConsume
         try {
 			System.out.println("\t--> Received message from Messaging Bank..");
 			System.out.println("\t---> Validating and Normalizing Data");
+			System.out.println(message);
 			lR = new LoanResponse().parseJSONToObject(message);
 			String lRString = lR.toString();
 			System.out.println("\t----> "+ lRString);
@@ -231,6 +232,7 @@ public class main extends PublishConsume
     public static void publishMessageToAggregator(String exchangeName, String bindingKey, String loanResponse) {
 	
 		try {
+			Thread.sleep(5000);
 			factory = new ConnectionFactory();
 			factory.setHost("188.166.29.160");
 			factory.setUsername("admin");
@@ -250,8 +252,10 @@ public class main extends PublishConsume
 			connection.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
-		
+
 	}
     
     

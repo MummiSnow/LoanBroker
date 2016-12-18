@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.Locale;
 import java.util.Random;
 
 public class LoanRequest {
@@ -10,7 +11,8 @@ public class LoanRequest {
     private int creditScore;
     private double rate;
 
-    private Random r  = new Random();
+
+    private Random r = new Random();
 
     public LoanRequest(String ssn, int loanAmount, int loanDuration, int creditScore) {
         this.ssn = ssn;
@@ -18,15 +20,15 @@ public class LoanRequest {
         this.loanDuration = loanDuration;
         this.creditScore = creditScore;
         this.rate = getInterestRate();
-}
+
+    }
 
     public String getSsn() {
         return ssn;
     }
 
-    private double getInterestRate()
-    {
-        double d = r.nextDouble()*(r.nextInt(6)+5);
+    private double getInterestRate() {
+        double d = r.nextDouble() * (r.nextInt(6) + 5);
         return d;
     }
 
@@ -68,8 +70,12 @@ public class LoanRequest {
 
     @Override
     public String toString() {
-        String requestDetails = String.format("{\"SSN\": \"%1s\"," +
-                " \"interestRate\": %2$f}", getSsn(), rate);
+        String requestDetails = null;
+
+            requestDetails = String.format(Locale.ENGLISH, "{\"SSN\": \"%1s\"," +
+                    " \"interestRate\": %2$f}", getSsn(), rate);
+
+
         return requestDetails;
     }
 }

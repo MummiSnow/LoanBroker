@@ -1,8 +1,7 @@
-import java.io.IOException;
-import java.util.Arrays;
-
 import Model.Customer;
 import com.rabbitmq.client.*;
+
+import java.io.IOException;
 
 public class JSONTranslator {
 
@@ -94,7 +93,7 @@ public class JSONTranslator {
             channel.exchangeDeclare("cphbusiness.bankJSON", "fanout");
 
             channel.basicPublish("cphbusiness.bankJSON",
-                    "",
+                    "aaExtFromJSONBank",
                     new AMQP.BasicProperties.Builder().replyTo("aaExtFromJSONBank").build(),
                     message);
 

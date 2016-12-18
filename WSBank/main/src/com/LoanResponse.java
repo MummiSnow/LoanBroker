@@ -2,6 +2,7 @@ package com;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Locale;
 
 @XmlRootElement
 public class LoanResponse {
@@ -28,7 +29,7 @@ public class LoanResponse {
 	
 	public String toString() {
 
-		String loanDet = String.format("<LoanResponse>" +
+		String loanDet = String.format(Locale.ENGLISH,"<LoanResponse>" +
 				"<ssn>%1$d</ssn>" +
 				"<interestRate>%2$f</interestRate>" +
 				"</LoanResponse>",SSN, interestRate);

@@ -2,6 +2,7 @@ package Model;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.util.Locale;
 
 
 public class Customer {
@@ -97,10 +98,10 @@ public class Customer {
     public String toString() {
 
 
-        String loanDetails = String.format("{\"ssn\": %1s," +
-                " \"creditScore\": %4$d," +
-                " \"loanAmount\": %2$d," +
-                " \"loanDuration\": %3$d}", SSN, loanAmount, loanDuration, creditScore);
+        String loanDetails = String.format(Locale.ENGLISH,"{\"ssn\":%1s," +
+                " \"creditScore\":%4$d," +
+                " \"loanAmount\":%2$f," +
+                " \"loanDuration\":%3$d}", SSN, (double)loanAmount, loanDuration, creditScore);
 
         return loanDetails;
     }

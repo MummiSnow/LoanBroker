@@ -98,6 +98,8 @@ public class Customer {
 
         }
 
+
+
 		/*if (json != null || json == "") {
             JSONObject obj = new JSONObject(json);
 			String ssn = obj.getString("SSN");

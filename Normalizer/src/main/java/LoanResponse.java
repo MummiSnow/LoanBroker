@@ -6,6 +6,7 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.StringReader;
+import java.util.Locale;
 
 @XmlRootElement(name = "LoanResponse")
 public class LoanResponse {
@@ -67,7 +68,7 @@ public class LoanResponse {
 	
 	@Override
 	public String toString() {
-		String loanResponse = String.format("{\"SSN\": \"%1$d\"," +
+		String loanResponse = String.format(Locale.ENGLISH, "{\"SSN\": \"%1$d\"," +
 				" \"interestRate\": %2$f}", SSN, interestRate );
 		return loanResponse;
 	}

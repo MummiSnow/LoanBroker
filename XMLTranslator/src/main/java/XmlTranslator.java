@@ -1,12 +1,12 @@
 import Model.Customer;
 import com.rabbitmq.client.*;
-import com.sun.corba.se.spi.orbutil.fsm.Input;
-import com.sun.jmx.remote.internal.Unmarshal;
 import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
 
-import javax.xml.bind.*;
-import java.io.*;
-import java.text.ParseException;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.PropertyException;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 public class XmlTranslator

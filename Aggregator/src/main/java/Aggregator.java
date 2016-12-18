@@ -29,24 +29,27 @@ public class Aggregator {
         consumeMessage(EXCHANGE_NAME,QUEUE_NAME,BINDING_KEY);
         while (true)
         {
-            Thread.sleep(6*60*60*1000);
+            Thread.sleep(/*6*60**/60*1000);
             checkMessages();
         }
     }
 
     private static void checkMessages()
     {
-        customersWaiting.forEach((ssn, cust) -> {
-            long arrival = customer.getTimeStampOfArrival();
-            Date now = new Date();
-            long twoDays = 2*24*60*60*1000;
-            if (arrival + twoDays > now.getTime())
-            {
-                customerChecker = customersWaiting.get(ssn);
-                publishMessage(customerChecker);
-            }
+        String workSsn = null;
+        System.out.println("Running message check method to allow for purging old messages");
+        if (customersWaiting.size() > 0) {
 
-        });
+            customersWaiting.forEach((ssn, cust) -> {
+                long arrival = cust.getTimeStampOfArrival();
+                Date now = new Date();
+                long twoDays = /*2*24*60**/3* 60 * 1000;
+                if (arrival + twoDays > now.getTime()) {
+                    customerChecker = customersWaiting.get(ssn);
+                    publishMessage(customerChecker);
+                }
+            });
+        }
     }
 
     public static void consumeMessageRecipientList(String exchangeName, String queueName, String bindingKey) {
@@ -157,13 +160,18 @@ public class Aggregator {
         }
     }
 
+
+
+
     public static void getDataFromMessage(String message) {
         if (message != null || message != "") {
 
             try {
 
                 JSONObject obj = new JSONObject(message);
-                String ssn = obj.getString("SSN");
+                String ssnBeforeSplit = obj.getString("SSN");
+                String[] parts = ssnBeforeSplit.split("(?<=\\G.{6})");
+                String ssn = parts[0] + "-" + parts[1];
                 double interestRate = obj.getDouble("interestRate");
                 Customer cust = customersWaiting.get(ssn);
 
