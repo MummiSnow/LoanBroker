@@ -76,12 +76,10 @@ public class main extends PublishConsume {
             try {
                 System.out.println("\t--> Recieved message from LoanRequest Validating and Enriching Data...");
                 System.out.println("\t---> Validating and Enriching Data...");
-                Thread.sleep(1000);
                 System.out.printf("\t----> Id:%1s, SSN:%2s, LoanAmount:%3d, LoanDuration:%4d Months \n",customer.getId(), customer.getSSN(),
 						customer.getLoanAmount(),
 						customer.getLoanDuration());
                 System.out.println("\t-----> Requesting Credit Score Bureau service... ");
-                Thread.sleep(2000);
                 customer.setCreditScore(score.creditScore(customer.getSSN()));
                 System.out.println("\t------> Customer Credit Score: "+customer.getCreditScore());
             } catch (Exception e) {

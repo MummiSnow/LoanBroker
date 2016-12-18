@@ -64,9 +64,7 @@ public class main {
 		if (message != null || message != "") {
 			try {
 				System.out.println("\t--> Received message from GetBank..");
-				Thread.sleep(1000);
 				System.out.println("\t---> Validating Data...");
-				Thread.sleep(1500);
 				System.out.println("\t----> "+message);
 				checkAcceptedBanks(message);
 			} catch (Exception e) {
@@ -90,7 +88,6 @@ public class main {
 			
 			publishMessage(sendTo,customer);
 		}
-		Thread.sleep(500);
 		if (json == true) {
 			System.out.println("\t     -> Accepted by JSON Bank: "+json);
 			
@@ -98,7 +95,6 @@ public class main {
 			
 			publishMessage(sendTo,customer);
 		}
-		Thread.sleep(500);
 		if (ws == true) {
 			System.out.println("\t     -> Accepted by WebService Bank: "+ws);
 			
@@ -106,7 +102,6 @@ public class main {
 			
 			publishMessage(sendTo,customer);
 		}
-		Thread.sleep(500);
 		if (msg == true) {
 			System.out.println("\t     -> Accepted by Messaging Bank: "+msg);
 			
