@@ -1,4 +1,3 @@
-import RabbitSuperClass.PublishConsume;
 import com.rabbitmq.client.*;
 import org.bank.credit.web.service.CreditScoreService;
 import org.bank.credit.web.service.CreditScoreService_Service;

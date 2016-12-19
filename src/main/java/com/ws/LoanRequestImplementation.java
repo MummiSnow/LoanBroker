@@ -19,8 +19,6 @@ public class LoanRequestImplementation implements LoanRequestInterface {
 	public String LoanRequest(String SSN, int loanAmount, int loanDurationInMonths) {
 
 		if(SSN.matches("[0-9]{6}-([0-9]{4})") && loanAmount > 0 && loanDurationInMonths > 0) {
-
-
 			String loanDetails = String.format("{\"SSN\": \"%1s\", \"LoanAmount\": %2$d, \"LoanDuration\": %3$d}", SSN, loanAmount, loanDurationInMonths);
 
 			try {

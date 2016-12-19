@@ -1,4 +1,3 @@
-import RabbitSuperClass.PublishConsume;
 import com.rabbitmq.client.*;
 
 import java.io.IOException;
