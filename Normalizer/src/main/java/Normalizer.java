@@ -218,7 +218,6 @@ public class Normalizer
         try {
 			System.out.println("\t--> Received message from Messaging Bank..");
 			System.out.println("\t---> Validating and Normalizing Data");
-			System.out.println(message);
 			lR = new LoanResponse().parseJSONToObject(message);
 			String lRString = lR.toString();
 			System.out.println("\t----> "+ lRString);

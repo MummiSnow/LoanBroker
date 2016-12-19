@@ -3,6 +3,8 @@ import Model.Customer;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -22,6 +24,7 @@ public class Aggregator {
     private static Customer customerChecker;
 
     private static HashMap<String, Customer> customersWaiting = new HashMap<>();
+    private static Collection<Customer> customersToSend = new ArrayList<>();
 
 
     public static void main(String[] args) throws InterruptedException {
@@ -29,7 +32,8 @@ public class Aggregator {
         consumeMessage(EXCHANGE_NAME,QUEUE_NAME,BINDING_KEY);
         while (true)
         {
-            Thread.sleep(/*6*60**/60*1000);
+            //Set short than the 6hrs to allow for quicker testing
+            Thread.sleep(/*6*60**/30*1000);
             checkMessages();
         }
     }
@@ -43,12 +47,19 @@ public class Aggregator {
             customersWaiting.forEach((ssn, cust) -> {
                 long arrival = cust.getTimeStampOfArrival();
                 Date now = new Date();
-                long twoDays = /*2*24*60**/3* 60 * 1000;
+                //Set shorter than the two days to allow for quicker testing
+                long twoDays = /*2*24*60*3**/ 30 * 1000;
                 if (arrival + twoDays > now.getTime()) {
-                    customerChecker = customersWaiting.get(ssn);
-                    publishMessage(customerChecker);
+                    customersToSend.add(cust);
                 }
             });
+
+            for (Customer c:customersToSend) {
+                publishMessage(c);
+                customersWaiting.remove(c.getSSN());
+
+            }
+            customersToSend.clear();
         }
     }
 
@@ -177,7 +188,7 @@ public class Aggregator {
 
 
                 if (cust == null) {
-                    System.out.println("Normalizer sent me a null customer");
+                    System.out.println("Normalizer sent me a message with an unknown ssn");
                     customersWaiting.forEach((ssnn, custo) ->
                             {
                                 if (custo.getSSN().contains(ssn))
@@ -208,7 +219,7 @@ public class Aggregator {
                 }
                 else
                 {
-                    System.out.println("Customer exists");
+                    System.out.println("Message received, Customer exists");
                     cust.setInterestRate(interestRate);
                     if (cust.getResposesReceived() == 4)
                     {
