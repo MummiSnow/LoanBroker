@@ -12,6 +12,7 @@ public class LoanRequestClient {
 		com.ws.LoanRequestImplementation lS = new LoanRequestImplementation();
 		for (int i = 0; i < 1; i++) {
 			String ser = lS.LoanRequest("111111-9601", 100, 100);
+			System.out.println(ser);
 		}
 		
 		/*ArrayList<String> list = lS.ListTest();
