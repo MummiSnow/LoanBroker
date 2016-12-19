@@ -4,6 +4,7 @@ package Model;
 import org.json.JSONObject;
 
 import java.util.Date;
+import java.util.Locale;
 import java.util.UUID;
 
 public class Customer {
@@ -137,7 +138,7 @@ public class Customer {
     @Override
     public String toString() {
 
-        String loanDetails = String.format("{\"Id\": %1s," +
+        String loanDetails = String.format(Locale.ENGLISH, "{\"Id\": \"%1s\"," +
                 " \"SSN\": \"%2s\"," +
                 " \"LoanAmount\": %3$d," +
                 " \"LoanDuration\": %4$d," +
