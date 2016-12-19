@@ -3,7 +3,7 @@ import com.rabbitmq.client.*;
 
 import java.io.IOException;
 
-public class main extends PublishConsume
+public class Normalizer
 {
     private static String BINDING_KEY = "Aggregator";
     private static String EXCHANGE_NAME = "aaInternal";

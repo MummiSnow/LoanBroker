@@ -4,7 +4,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 
-public class main {
+public class RecipientList {
 
 	private static String AGGREGATOR_QUEUE = "AggregatorFromRecipient";
 	private static String[] SEND_QUEUE = {"XMLTranslator", "JSONTranslator", "WSTranslator", "MessagingTranslator" };
