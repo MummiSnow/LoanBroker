@@ -45,7 +45,7 @@ public class Aggregator {
                 Date now = new Date();
                 long twoDays = /*2*24*60**/3* 60 * 1000;
                 if (arrival + twoDays > now.getTime()) {
-                    customerChecker = customersWaiting.get(ssn);
+                    customerChecker = customersWaiting.remove(ssn);
                     publishMessage(customerChecker);
                 }
             });
@@ -177,7 +177,7 @@ public class Aggregator {
 
 
                 if (cust == null) {
-                    System.out.println("Normalizer sent me a null customer");
+                    System.out.println("Normalizer sent me a message with an unknown ssn");
                     customersWaiting.forEach((ssnn, custo) ->
                             {
                                 if (custo.getSSN().contains(ssn))
@@ -208,7 +208,7 @@ public class Aggregator {
                 }
                 else
                 {
-                    System.out.println("Customer exists");
+                    System.out.println("Message received, Customer exists");
                     cust.setInterestRate(interestRate);
                     if (cust.getResposesReceived() == 4)
                     {

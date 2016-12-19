@@ -40,7 +40,6 @@ public class Bank {
                     String message = new String(body, "UTF-8");
 
 
-                    System.out.println(properties.getReplyTo());
                     getDataFromMessage(message, properties.getReplyTo());
 
 
@@ -83,7 +82,6 @@ public class Bank {
             connection = factory.newConnection();
             channel = connection.createChannel();
 
-            System.out.println(replyTo);
             channel.exchangeDeclare(EXCHANGE_NAME, "direct", true);
             channel.basicPublish(EXCHANGE_NAME,
                     replyTo,

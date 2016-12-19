@@ -37,7 +37,6 @@ public class Customer {
     private void setLoanAmount(int loanAmount) {
         if (loanAmount > 0) {
             this.loanAmount = loanAmount;
-            System.out.println(this.loanAmount);
         } else{
             throw new IllegalArgumentException("Cannot Issue a Loan of 0 or less");
         }
