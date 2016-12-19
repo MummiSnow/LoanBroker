@@ -17,32 +17,35 @@ public class LoanRequestImplementation implements LoanRequestInterface {
 	Channel channel;
 	
 	public String LoanRequest(String SSN, int loanAmount, int loanDurationInMonths) {
-		
-		String loanDetails = String.format("{\"SSN\": \"%1s\", \"LoanAmount\": %2$d, \"LoanDuration\": %3$d}", SSN,loanAmount,loanDurationInMonths);
-		
-		try {
-			factory = new ConnectionFactory();
-			factory.setHost("188.166.29.160");
-			factory.setUsername("admin");
-			factory.setPassword("admin");
-			
-			connection = factory.newConnection();
-			channel = connection.createChannel();
-			
-			channel.exchangeDeclare(EXCHANGE_NAME, "direct", true);
-			
-			channel.basicPublish(EXCHANGE_NAME, ROUTING_KEY, null, loanDetails.getBytes());
-				
-			System.out.printf("Sent: '%1s' ", loanDetails);
-			
-			channel.close();
-			connection.close();
-			return "User requested a loan: " + loanDetails;
-			
-		}  catch (IOException e) {
-			e.printStackTrace();
+
+		if(SSN.matches("[0-9]{6}-([0-9]{4})") && loanAmount > 0 && loanDurationInMonths > 0) {
+
+
+			String loanDetails = String.format("{\"SSN\": \"%1s\", \"LoanAmount\": %2$d, \"LoanDuration\": %3$d}", SSN, loanAmount, loanDurationInMonths);
+
+			try {
+				factory = new ConnectionFactory();
+				factory.setHost("188.166.29.160");
+				factory.setUsername("admin");
+				factory.setPassword("admin");
+
+				connection = factory.newConnection();
+				channel = connection.createChannel();
+
+				channel.exchangeDeclare(EXCHANGE_NAME, "direct", true);
+
+				channel.basicPublish(EXCHANGE_NAME, ROUTING_KEY, null, loanDetails.getBytes());
+
+				System.out.printf("Sent: '%1s' ", loanDetails +"\n");
+
+				channel.close();
+				connection.close();
+				return "User requested a loan: " + loanDetails;
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-		
 		return "Something went wrong in 'LoanRequestImplementation' Class";
 	}
 	
