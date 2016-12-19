@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-public class Bank {
+public class MessagingBank {
     private static String QUEUE_NAME = "aa.RabbitMQ";
     private static String BINDING_KEY = "aa.RabbitMQ";
     private static String EXCHANGE_NAME = "aa.RabbitMQBank";

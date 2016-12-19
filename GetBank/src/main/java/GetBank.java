@@ -1,31 +1,27 @@
 import RabbitSuperClass.PublishConsume;
 import com.rabbitmq.client.*;
-import org.bank.credit.web.service.CreditScoreService;
-import org.bank.credit.web.service.CreditScoreService_Service;
+import com.ws.RuleBaseImplementation;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 
-public class main extends PublishConsume {
+public class GetBank {
 
-    private static String SEND_QUEUE = "GetBanks";
-    private static String QUEUE_NAME = "CreditScore";
-    private static String BINDING_KEY = "CreditScore";
+
+    private static String QUEUE_NAME = "GetBanks";
+    private static String BINDING_KEY = "GetBanks";
     private static String EXCHANGE_NAME = "aaInternal";
-
+    
     private static ConnectionFactory factory;
     private static Connection connection;
     private static Channel channel;
     private static Customer customer;
-    
-    private static CreditScoreService_Service cs;
-    private static CreditScoreService score;
-    
+
+
+
     public static void main(String[] args) throws IOException, InterruptedException {
-        
-        cs = new CreditScoreService_Service();
-        score = cs.getCreditScoreServicePort();
-        consumeMessage(EXCHANGE_NAME,QUEUE_NAME, BINDING_KEY);
+        consumeMessage(EXCHANGE_NAME, QUEUE_NAME, BINDING_KEY);
         
         
     }
@@ -41,9 +37,7 @@ public class main extends PublishConsume {
             channel = connection.createChannel();
             
             channel.queueDeclare(queueName, true, false, false, null);
-            System.out.println(" [*] CreditScore Waiting for messages from LoanRequest...");
-            System.out.println("========================================================================================");
-    
+            System.out.println(" [*] GetBank Waiting for Messages from Credit Score...");
             channel.queueBind(queueName, exchangeName, bindingKey);
             
             Consumer consumer = new DefaultConsumer(channel) {
@@ -55,11 +49,12 @@ public class main extends PublishConsume {
                     try {
                         getDataFromMessage(message);
                     }  finally {
-                        if (message == null) {
+                        if (message == "") {
                             channel.close();
                             connection.close();
                             throw new NullPointerException("\t\t Data invalid could not enrich data");
                         }
+                        
                     }
                     
                 }
@@ -69,48 +64,58 @@ public class main extends PublishConsume {
             e.printStackTrace();
         }
     }
-    
-    public static void getDataFromMessage(String message){
+
+    private static void getDataFromMessage(String message){
         if (message != null || message != "") {
             customer = new Customer(message);
             try {
-                System.out.println("\t--> Recieved message from LoanRequest Validating and Enriching Data...");
-                System.out.println("\t---> Validating and Enriching Data...");
-                System.out.printf("\t----> Id:%1s, SSN:%2s, LoanAmount:%3d, LoanDuration:%4d Months \n",customer.getId(), customer.getSSN(),
-						customer.getLoanAmount(),
-						customer.getLoanDuration());
-                System.out.println("\t-----> Requesting Credit Score Bureau service... ");
-                customer.setCreditScore(score.creditScore(customer.getSSN()));
-                System.out.println("\t------> Customer Credit Score: "+customer.getCreditScore());
+                System.out.println("\t--> Received message from CreditScore..");
+                System.out.println("\t---> Validating Data...");
+                Thread.sleep(1000);
+                RuleBaseImplementation ruleBaseService = new RuleBaseImplementation();
+                Thread.sleep(2000);
+                System.out.println("\t----> Requesting Rule base service...");
+                boolean[] ser = ruleBaseService.GetBanks(customer.getSSN(),customer.getLoanAmount(), customer.getLoanDuration(), customer.getCreditScore());
+                Thread.sleep(2000);
+                if (ser != null) {
+                    System.out.printf("\t-----> Response: 200 Ok \t(");
+                    customer.setBanks(ser);
+                    System.out.printf("(True = accepted) BankXML: %1s, BankJSON: %2s, BankWS: %3s, BankMSG: %4s )\n",ser[0],ser[1],ser[2],ser[3]);
+                } else {
+                    System.out.println("\t------> Response: 406 Not acceptable");
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        
+
         if (customer != null){
-            publishMessageToGetBanks(customer);
+            publishMessageToRecipientList(customer);
         } else {
             throw new NullPointerException("Customer cannot be null");
         }
+
+
     }
-    
-    public static void publishMessageToGetBanks(Customer customer) {
+
+    private static void publishMessageToRecipientList(Customer customer) {
         try {
             byte[] message = customer.toString().getBytes();
             factory = new ConnectionFactory();
             factory.setHost("188.166.29.160");
             factory.setUsername("admin");
             factory.setPassword("admin");
-        
+
             connection = factory.newConnection();
             channel = connection.createChannel();
-        
+
             channel.exchangeDeclare(EXCHANGE_NAME, "direct", true);
-        
-            channel.basicPublish(EXCHANGE_NAME, SEND_QUEUE, null, message);
-        
+
+            channel.basicPublish(EXCHANGE_NAME, "RecipientList", null, message);
+    
             String msgStr = new String(message, "UTF-8");
-            System.out.printf("\t-------> Sent: '%1s'\n", msgStr);
+            System.out.println("\t------> Sent: '"+ msgStr+"'");
             System.out.println("========================================================================================");
             channel.close();
             connection.close();
@@ -119,5 +124,4 @@ public class main extends PublishConsume {
         }
     }
 
-    
 }

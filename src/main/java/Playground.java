@@ -2,7 +2,7 @@ import RabbitSuperClass.PublishConsume;
 import com.ws.WSBankImplementation;
 
 
-public class Playground extends PublishConsume {
+public class Playground {
 	
 		private static final String TASK_QUEUE_NAME = "CreditScore";
 	
